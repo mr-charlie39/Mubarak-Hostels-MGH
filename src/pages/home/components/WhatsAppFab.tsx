@@ -1,11 +1,10 @@
+import { CEO_WHATSAPP, DEFAULT_WHATSAPP_MESSAGE, whatsappLink } from "@/lib/siteConfig";
+
 export default function WhatsAppFab({ message }: { message?: string }) {
-  const msg = encodeURIComponent(
-    message ??
-      "Hello, I am interested in getting admission at Mubarak Group of Hostels. Please provide me with the available rooms and admission details.",
-  );
+  const text = message ?? DEFAULT_WHATSAPP_MESSAGE;
   return (
     <a
-      href={`https://wa.me/923000000000?text=${msg}`}
+      href={whatsappLink(CEO_WHATSAPP, text)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

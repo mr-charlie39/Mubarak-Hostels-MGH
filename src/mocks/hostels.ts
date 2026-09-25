@@ -3,7 +3,7 @@ export const hostels = [
     id: 1,
     name: "Jinnah Hostel",
     gender: "boys",
-    location: "6th Road, Rawalpindi",
+    location: "Satellite Town, Rawalpindi",
     image: "https://readdy.ai/api/search-image?query=Modern%20five%20storey%20student%20hostel%20building%20exterior%20with%20warm%20cream%20facade%20and%20sage%20green%20accent%20details%2C%20clean%20minimal%20residential%20architecture%2C%20manicured%20landscaped%20entrance%20with%20lush%20green%20plants%20and%20trees%2C%20warm%20golden%20hour%20sunlight%2C%20clear%20blue%20sky%2C%20professional%20architectural%20photography&width=1000&height=700&seq=hostel-01-jinnah&orientation=landscape",
     rooms: 50,
     floors: 5,
@@ -15,7 +15,7 @@ export const hostels = [
     id: 2,
     name: "Sama Hostel",
     gender: "boys",
-    location: "6th Road, Rawalpindi",
+    location: "Satellite Town, Rawalpindi",
     image: "https://readdy.ai/api/search-image?query=Contemporary%20student%20hostel%20building%20exterior%20with%20warm%20beige%20facade%20and%20modern%20windows%2C%20four%20storey%20clean%20residential%20architecture%2C%20tidy%20landscaped%20front%20garden%20with%20green%20shrubs%20and%20pathway%2C%20soft%20warm%20morning%20light%2C%20bright%20blue%20sky%2C%20professional%20architectural%20photography&width=1000&height=700&seq=hostel-02-sama&orientation=landscape",
     rooms: 50,
     floors: 5,
@@ -27,7 +27,7 @@ export const hostels = [
     id: 3,
     name: "Abdul Qadeer Hostel",
     gender: "boys",
-    location: "6th Road, Rawalpindi",
+    location: "Satellite Town, Rawalpindi",
     image: "https://readdy.ai/api/search-image?query=Elegant%20student%20hostel%20residence%20exterior%20with%20warm%20sandstone%20facade%20and%20balcony%20railings%2C%20modern%20clean%20architecture%20with%20large%20windows%2C%20neat%20entrance%20with%20potted%20plants%20and%20green%20landscaping%2C%20warm%20late%20afternoon%20golden%20light%2C%20clear%20sky%2C%20professional%20architectural%20photography&width=1000&height=700&seq=hostel-03-abdulqadir&orientation=landscape",
     rooms: 50,
     floors: 5,
@@ -83,7 +83,7 @@ export const hostelDetails = [
   {
     id: 1,
     description:
-      "Our flagship residence on the bustling 6th Road in Rawalpindi, minutes from the Islamabad border. Close to Ayub National Park, Jinnah Park and the commercial heart of Saddar, it keeps students connected to both Rawalpindi and the capital while offering a calm, secure retreat indoors.",
+      "Our flagship residence in Satellite Town, Rawalpindi — minutes from the Islamabad border. Close to Ayub National Park, Jinnah Park and the commercial heart of Saddar, it keeps students connected to both Rawalpindi and the capital while offering a calm, secure retreat indoors.",
     security:
       "24/7 CCTV coverage on every floor, biometric entry at the main gate, trained security guards stationed at the entrance, and strict visitor management with a digital register.",
     food:
@@ -100,7 +100,7 @@ export const hostelDetails = [
   {
     id: 2,
     description:
-      "Nestled along 6th Road in Rawalpindi, this branch offers a peaceful study-first environment. A short drive from Fatima Jinnah Women University and major banks, it's a favourite among students who prefer a quieter, well-connected setting near Islamabad.",
+      "Nestled in D Block, Satellite Town, Rawalpindi, this branch offers a peaceful study-first environment. A short drive from Fatima Jinnah Women University and major banks, it's a favourite among students who prefer a quieter, well-connected setting near Islamabad.",
     security:
       "Round-the-clock guarded gate, CCTV on all floors and stairwells, and a biometric access system so only registered residents can enter the building.",
     food:
@@ -117,7 +117,7 @@ export const hostelDetails = [
   {
     id: 3,
     description:
-      "Located on 6th Road, Rawalpindi — the academic gateway to the twin cities. Minutes from Arid Agriculture University, Bahria University and top coaching centres, it's designed for busy students who want study, food and entertainment all within reach of Islamabad.",
+      "Located in D Block, Satellite Town, Rawalpindi — the academic gateway to the twin cities. Minutes from Arid Agriculture University, Bahria University and top coaching centres, it's designed for busy students who want study, food and entertainment all within reach of Islamabad.",
     security:
       "24/7 CCTV monitoring, secure boundary walls, night guards on patrol and a digital visitor logbook with photo capture.",
     food:
@@ -136,12 +136,12 @@ export const hostelDetails = [
 export const hostelLocations = [
   {
     id: 1,
-    address: "6th Road, Rawalpindi, Punjab",
+    address: "400, 401, 419, D Block, Satellite Town, Rawalpindi, 46300",
     phone: "+92 300 111 0001",
     whatsapp: "923001110001",
     email: "jinnah@mubarakhostels.pk",
     mapEmbed:
-      "https://maps.google.com/maps?q=6th%20Road%20Rawalpindi&t=&z=14&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?q=J3RC%2BJR8%20D%20Block%20Satellite%20Town%20Rawalpindi%2046300&t=&z=16&ie=UTF8&iwloc=&output=embed",
     nearbyUniversities: [
       "Fatima Jinnah Women University",
       "Arid Agriculture University Rawalpindi",
@@ -152,12 +152,12 @@ export const hostelLocations = [
   },
   {
     id: 2,
-    address: "6th Road, Rawalpindi, Punjab",
+    address: "400, 401, 419, D Block, Satellite Town, Rawalpindi, 46300",
     phone: "+92 300 111 0002",
     whatsapp: "923001110002",
     email: "sama@mubarakhostels.pk",
     mapEmbed:
-      "https://maps.google.com/maps?q=6th%20Road%20Rawalpindi&t=&z=14&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?q=J3RC%2BJR8%20D%20Block%20Satellite%20Town%20Rawalpindi%2046300&t=&z=16&ie=UTF8&iwloc=&output=embed",
     nearbyUniversities: [
       "Arid Agriculture University Rawalpindi",
       "Bahria University Islamabad",
@@ -168,12 +168,12 @@ export const hostelLocations = [
   },
   {
     id: 3,
-    address: "6th Road, Rawalpindi, Punjab",
+    address: "400, 401, 419, D Block, Satellite Town, Rawalpindi, 46300",
     phone: "+92 300 111 0003",
     whatsapp: "923001110003",
     email: "abdulqadeer@mubarakhostels.pk",
     mapEmbed:
-      "https://maps.google.com/maps?q=6th%20Road%20Rawalpindi&t=&z=14&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?q=J3RC%2BJR8%20D%20Block%20Satellite%20Town%20Rawalpindi%2046300&t=&z=16&ie=UTF8&iwloc=&output=embed",
     nearbyUniversities: [
       "Bahria University Islamabad",
       "International Islamic University Islamabad",

@@ -3,6 +3,7 @@ import SiteFooter from "@/components/feature/SiteFooter";
 import WhatsAppFab from "@/pages/home/components/WhatsAppFab";
 import TeamSection from "@/components/feature/TeamSection";
 import { ceo } from "@/mocks/team";
+import { whatsappLink } from "@/lib/siteConfig";
 import { useWardens } from "@/hooks/useWardens";
 import { useHostels } from "@/hooks/useHostels";
 
@@ -30,7 +31,7 @@ const values = [
 ];
 
 const milestones = [
-  { year: "2012", text: "Founded with our first hostel on 6th Road, Rawalpindi, hosting 50 students." },
+  { year: "2012", text: "Founded with our first hostel in D Block, Satellite Town, Rawalpindi, hosting 50 students." },
   { year: "2015", text: "Expanded to three hostels with dedicated wardens and 24/7 security." },
   { year: "2019", text: "Introduced premium room categories, mess services and fiber Wi-Fi." },
   { year: "2022", text: "Grew to a network of hostels serving hundreds of students across Rawalpindi." },
@@ -82,7 +83,7 @@ export default function About() {
             <p className="mt-6 text-foreground-700 leading-relaxed">
               Mubarak Group of Hostels began in 2012 with a simple belief: that students deserve
               accommodation that treats them with dignity, security and care. What started as a
-              single 50-bed hostel on 6th Road, Rawalpindi has grown into a network of hostels
+              single 50-bed hostel in D Block, Satellite Town, Rawalpindi has grown into a network of hostels
               serving students from universities across Pakistan.
             </p>
             <p className="mt-4 text-foreground-700 leading-relaxed">
@@ -147,6 +148,15 @@ export default function About() {
                 {ceo.phone}
               </a>
               <a
+                href={whatsappLink(ceo.phone)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-[#25D366] hover:bg-[#1eb958] text-white text-sm font-semibold whitespace-nowrap cursor-pointer transition"
+              >
+                <i className="ri-whatsapp-line"></i>
+                WhatsApp
+              </a>
+              <a
                 href={`mailto:${ceo.email}`}
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-background-300 text-foreground-800 text-sm font-semibold whitespace-nowrap cursor-pointer hover:bg-background-100 transition"
               >
@@ -205,13 +215,26 @@ export default function About() {
                         <i className="ri-building-2-line text-primary-600 mt-0.5"></i>
                         <span className="text-foreground-700">{hostel?.name ?? "Unassigned"}</span>
                       </div>
-                      <a
-                        href={`tel:${(w.phone ?? "").replace(/\s/g, "")}`}
-                        className="flex items-center gap-2 text-foreground-700 hover:text-primary-600 cursor-pointer"
-                      >
-                        <i className="ri-phone-line text-primary-600"></i>
-                        {w.phone ?? "—"}
-                      </a>
+                      <div className="flex items-center justify-between gap-2">
+                        <a
+                          href={`tel:${(w.phone ?? "").replace(/\s/g, "")}`}
+                          className="flex items-center gap-2 text-foreground-700 hover:text-primary-600 cursor-pointer min-w-0"
+                        >
+                          <i className="ri-phone-line text-primary-600"></i>
+                          <span className="truncate">{w.phone ?? "—"}</span>
+                        </a>
+                        {w.phone && (
+                          <a
+                            href={whatsappLink(w.phone)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Chat on WhatsApp"
+                            className="w-8 h-8 shrink-0 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:bg-[#1eb958] cursor-pointer transition"
+                          >
+                            <i className="ri-whatsapp-line text-sm"></i>
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 );

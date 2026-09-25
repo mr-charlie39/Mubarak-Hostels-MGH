@@ -1,6 +1,7 @@
 import { leadership } from "@/mocks/team";
 import { useWardens } from "@/hooks/useWardens";
 import { useHostels } from "@/hooks/useHostels";
+import { whatsappLink } from "@/lib/siteConfig";
 
 type TeamSectionProps = {
   showWardens?: boolean;
@@ -49,13 +50,24 @@ export default function TeamSection({ showWardens = true }: TeamSectionProps) {
                 {(m.phone || m.email) && (
                   <div className="mt-4 pt-4 border-t border-background-200 space-y-2.5 text-sm text-left">
                     {m.phone && (
-                      <a
-                        href={`tel:${m.phone.replace(/\s/g, "")}`}
-                        className="flex items-center gap-2 text-foreground-700 hover:text-primary-600 cursor-pointer"
-                      >
-                        <i className="ri-phone-line text-primary-600"></i>
-                        {m.phone}
-                      </a>
+                      <div className="flex items-center justify-between gap-2">
+                        <a
+                          href={`tel:${m.phone.replace(/\s/g, "")}`}
+                          className="flex items-center gap-2 text-foreground-700 hover:text-primary-600 cursor-pointer min-w-0"
+                        >
+                          <i className="ri-phone-line text-primary-600"></i>
+                          <span className="truncate">{m.phone}</span>
+                        </a>
+                        <a
+                          href={whatsappLink(m.phone)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Chat on WhatsApp"
+                          className="w-8 h-8 shrink-0 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:bg-[#1eb958] cursor-pointer transition"
+                        >
+                          <i className="ri-whatsapp-line text-sm"></i>
+                        </a>
+                      </div>
                     )}
                     {m.email && (
                       <a
@@ -142,13 +154,24 @@ export default function TeamSection({ showWardens = true }: TeamSectionProps) {
                           <span className="text-foreground-700">{hostelName(w.hostelId)}</span>
                         </div>
                         {w.phone && (
-                          <a
-                            href={`tel:${w.phone.replace(/\s/g, "")}`}
-                            className="flex items-center gap-2 text-foreground-700 hover:text-primary-600 cursor-pointer"
-                          >
-                            <i className="ri-phone-line text-primary-600"></i>
-                            {w.phone}
-                          </a>
+                          <div className="flex items-center justify-between gap-2">
+                            <a
+                              href={`tel:${w.phone.replace(/\s/g, "")}`}
+                              className="flex items-center gap-2 text-foreground-700 hover:text-primary-600 cursor-pointer min-w-0"
+                            >
+                              <i className="ri-phone-line text-primary-600"></i>
+                              <span className="truncate">{w.phone}</span>
+                            </a>
+                            <a
+                              href={whatsappLink(w.phone)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title="Chat on WhatsApp"
+                              className="w-8 h-8 shrink-0 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:bg-[#1eb958] cursor-pointer transition"
+                            >
+                              <i className="ri-whatsapp-line text-sm"></i>
+                            </a>
+                          </div>
                         )}
                         {w.email && (
                           <a

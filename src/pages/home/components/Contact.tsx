@@ -1,3 +1,13 @@
+import {
+  CEO_WHATSAPP,
+  CEO_PHONE,
+  CEO_EMAIL,
+  HEAD_OFFICE,
+  OFFICE_HOURS,
+  DEFAULT_WHATSAPP_MESSAGE,
+  whatsappLink,
+} from "@/lib/siteConfig";
+
 export default function Contact() {
   return (
     <section id="contact" className="py-24 px-4 md:px-8 bg-background-100">
@@ -16,10 +26,10 @@ export default function Contact() {
 
           <div className="mt-8 space-y-5">
             {[
-              { icon: "ri-map-pin-2-line", title: "Head Office", text: "6th Road, Rawalpindi, Pakistan" },
-              { icon: "ri-phone-line", title: "Phone", text: "+92 300 000 0000  ·  +92 42 111 222 333" },
-              { icon: "ri-mail-line", title: "Email", text: "admissions@mubarakhostels.pk" },
-              { icon: "ri-time-line", title: "Hours", text: "Daily · 9:00 AM — 9:00 PM" },
+              { icon: "ri-map-pin-2-line", title: "Head Office", text: HEAD_OFFICE },
+              { icon: "ri-phone-line", title: "Phone", text: `${CEO_PHONE}  ·  ${HEAD_OFFICE}` },
+              { icon: "ri-mail-line", title: "Email", text: CEO_EMAIL },
+              { icon: "ri-time-line", title: "Hours", text: OFFICE_HOURS },
             ].map((c) => (
               <div key={c.title} className="flex gap-4 items-start">
                 <div className="w-11 h-11 rounded-md bg-primary-500 flex items-center justify-center shrink-0">
@@ -32,12 +42,22 @@ export default function Contact() {
               </div>
             ))}
           </div>
+
+          <a
+            href={whatsappLink(CEO_WHATSAPP, DEFAULT_WHATSAPP_MESSAGE)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2.5 px-6 py-3 rounded-md bg-[#25D366] hover:bg-[#1eb958] text-white text-sm font-bold whitespace-nowrap cursor-pointer transition"
+          >
+            <i className="ri-whatsapp-line text-xl"></i>
+            Chat with us on WhatsApp — {CEO_PHONE}
+          </a>
         </div>
 
         <div className="rounded-2xl overflow-hidden border border-background-200 h-[520px]">
           <iframe
             title="Mubarak Group of Hostels — Location"
-            src="https://www.google.com/maps?q=6th+Road+Rawalpindi&output=embed"
+            src="https://www.google.com/maps?q=J3RC%2BJR8%20D%20Block%20Satellite%20Town%20Rawalpindi&output=embed"
             className="w-full h-full"
             loading="lazy"
           ></iframe>

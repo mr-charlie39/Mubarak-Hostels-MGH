@@ -18,7 +18,7 @@ function HostelCard({ h }: { h: Hostel }) {
         />
         <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-background-50/95 backdrop-blur text-xs font-semibold text-primary-700">
           <i className="ri-map-pin-line mr-1"></i>
-          {h.location ?? "Lahore"}
+          {h.location ?? "Rawalpindi"}
         </div>
         <div
           className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold text-background-50 flex items-center gap-1 ${

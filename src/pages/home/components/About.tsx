@@ -1,4 +1,5 @@
 import { ceo } from "@/mocks/team";
+import { whatsappLink } from "@/lib/siteConfig";
 
 export default function About() {
   return (
@@ -83,6 +84,31 @@ export default function About() {
             <blockquote className="mt-5 text-foreground-600 italic border-l-2 border-accent-500 pl-4 max-w-2xl">
               "{ceo.quote}"
             </blockquote>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
+              <a
+                href={`tel:${ceo.phone.replace(/\s/g, "")}`}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-primary-500 hover:bg-primary-600 text-background-50 text-sm font-semibold whitespace-nowrap cursor-pointer transition"
+              >
+                <i className="ri-phone-line"></i>
+                {ceo.phone}
+              </a>
+              <a
+                href={whatsappLink(ceo.phone)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#25D366] hover:bg-[#1eb958] text-white text-sm font-semibold whitespace-nowrap cursor-pointer transition"
+              >
+                <i className="ri-whatsapp-line"></i>
+                WhatsApp
+              </a>
+              <a
+                href={`mailto:${ceo.email}`}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md border border-background-300 text-foreground-800 text-sm font-semibold whitespace-nowrap cursor-pointer hover:bg-background-100 transition"
+              >
+                <i className="ri-mail-line"></i>
+                {ceo.email}
+              </a>
+            </div>
           </div>
         </div>
       </div>

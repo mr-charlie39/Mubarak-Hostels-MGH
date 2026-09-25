@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
 import FaqSection from "./FaqSection";
+import {
+  CEO_WHATSAPP,
+  CEO_PHONE,
+  CEO_EMAIL,
+  DEFAULT_WHATSAPP_MESSAGE,
+  whatsappLink,
+} from "@/lib/siteConfig";
 
 export default function SiteFooter() {
   return (
@@ -18,14 +25,21 @@ export default function SiteFooter() {
               every student.
             </p>
             <div className="mt-6 flex gap-3">
-              {["facebook", "instagram", "youtube", "whatsapp"].map((s) => (
+              {[
+                { name: "facebook", href: "#" },
+                { name: "instagram", href: "#" },
+                { name: "youtube", href: "#" },
+                { name: "whatsapp", href: whatsappLink(CEO_WHATSAPP, DEFAULT_WHATSAPP_MESSAGE) },
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.name}
+                  href={s.href}
+                  target={s.name === "whatsapp" ? "_blank" : undefined}
+                  rel={s.name === "whatsapp" ? "noopener noreferrer" : undefined}
                   className="w-9 h-9 rounded-md bg-background-50/10 hover:bg-accent-500 hover:text-foreground-950 flex items-center justify-center cursor-pointer transition"
-                  aria-label={s}
+                  aria-label={s.name}
                 >
-                  <i className={`ri-${s}-fill`}></i>
+                  <i className={`ri-${s.name}-fill`}></i>
                 </a>
               ))}
             </div>
@@ -74,15 +88,25 @@ export default function SiteFooter() {
             <ul className="space-y-3 text-sm">
               <li className="flex gap-2">
                 <i className="ri-map-pin-line text-accent-400 mt-0.5"></i>
-                6th Road, Rawalpindi
+                Satellite Town, Rawalpindi
               </li>
-              <li className="flex gap-2">
-                <i className="ri-phone-line text-accent-400 mt-0.5"></i>
-                +92 300 000 0000
+              <li>
+                <a href={`tel:${CEO_PHONE.replace(/\s/g, "")}`} className="flex gap-2 hover:text-accent-400 cursor-pointer">
+                  <i className="ri-phone-line text-accent-400 mt-0.5"></i>
+                  {CEO_PHONE}
+                </a>
               </li>
-              <li className="flex gap-2">
-                <i className="ri-mail-line text-accent-400 mt-0.5"></i>
-                admissions@mubarakhostels.pk
+              <li>
+                <a href={whatsappLink(CEO_WHATSAPP, DEFAULT_WHATSAPP_MESSAGE)} target="_blank" rel="noopener noreferrer" className="flex gap-2 hover:text-accent-400 cursor-pointer">
+                  <i className="ri-whatsapp-line text-accent-400 mt-0.5"></i>
+                  {CEO_PHONE}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${CEO_EMAIL}`} className="flex gap-2 hover:text-accent-400 cursor-pointer">
+                  <i className="ri-mail-line text-accent-400 mt-0.5"></i>
+                  {CEO_EMAIL}
+                </a>
               </li>
             </ul>
           </div>

@@ -147,7 +147,7 @@ export default function HostelFormModal({ open, hostel, saving, error, onSubmit,
               className={inputClass}
               value={values.location}
               onChange={(e) => set({ location: e.target.value })}
-              placeholder="e.g. 6th Road, Rawalpindi"
+              placeholder="e.g. D Block, Satellite Town, Rawalpindi"
             />
           </div>
 

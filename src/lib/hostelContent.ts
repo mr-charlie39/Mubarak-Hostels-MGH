@@ -75,11 +75,11 @@ export function getHostelLocation(id: number, hostel?: Hostel): LocationContent 
       warden: mock.warden,
     };
   }
-  const place = encodeURIComponent(hostel?.location || "Lahore, Pakistan");
+  const place = encodeURIComponent(hostel?.location || "Rawalpindi, Pakistan");
   const rawPhone = hostel?.phone || "";
   return {
     id,
-    address: hostel?.address || hostel?.location || "Lahore, Pakistan",
+    address: hostel?.address || hostel?.location || "Rawalpindi, Pakistan",
     phone: rawPhone,
     whatsapp: rawPhone.replace(/[^0-9]/g, ""),
     email: hostel?.email || "",

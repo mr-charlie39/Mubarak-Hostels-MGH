@@ -54,7 +54,7 @@ export default function StepHostel({ hostels, selectedId, onSelect }: Props) {
                   />
                   <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-background-50/95 text-xs font-semibold text-primary-700">
                     <i className="ri-map-pin-line mr-1"></i>
-                    {h.location ?? "Lahore"}
+                    {h.location ?? "Rawalpindi"}
                   </div>
                   <span
                     className={`absolute top-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold capitalize ${

@@ -107,14 +107,14 @@ export default function StepDetails({ form, onChange, onNext, onBack }: Props) {
           required
           value={form.district}
           onChange={(v) => onChange("district", v)}
-          placeholder="e.g. Lahore"
+          placeholder="e.g. Rawalpindi"
         />
         <FormField
           name="city"
           label="City"
           value={form.city}
           onChange={(v) => onChange("city", v)}
-          placeholder="e.g. Lahore"
+          placeholder="e.g. Rawalpindi"
         />
         <FormField
           name="tehsil"

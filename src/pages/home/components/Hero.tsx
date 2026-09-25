@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { CEO_WHATSAPP, DEFAULT_WHATSAPP_MESSAGE, whatsappLink } from "@/lib/siteConfig";
 
-const WHATSAPP_LINK =
-  "https://wa.me/923000000000?text=" +
-  encodeURIComponent(
-    "Hello, I am interested in getting admission at Mubarak Group of Hostels. Please provide me with the available rooms and admission details.",
-  );
+const WHATSAPP_LINK = whatsappLink(CEO_WHATSAPP, DEFAULT_WHATSAPP_MESSAGE);
 
 export default function Hero() {
   const [visible, setVisible] = useState(true);

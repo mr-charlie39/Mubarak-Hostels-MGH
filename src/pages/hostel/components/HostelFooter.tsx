@@ -28,7 +28,7 @@ export default function HostelFooter({ id, name }: Props) {
               </div>
             </div>
             <p className="mt-5 text-sm text-background-200 leading-relaxed">
-              A secure, comfortable and study-friendly residence for students in Lahore.
+              A secure, comfortable and study-friendly residence for students in Rawalpindi and Islamabad.
             </p>
             <Link
               to="/"

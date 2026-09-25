@@ -4,6 +4,15 @@ import SiteNavbar from "@/components/feature/SiteNavbar";
 import SiteFooter from "@/components/feature/SiteFooter";
 import WhatsAppFab from "@/pages/home/components/WhatsAppFab";
 import { hostelLocations } from "@/mocks/hostels";
+import {
+  CEO_WHATSAPP,
+  CEO_PHONE,
+  CEO_EMAIL,
+  HEAD_OFFICE,
+  OFFICE_HOURS,
+  DEFAULT_WHATSAPP_MESSAGE,
+  whatsappLink,
+} from "@/lib/siteConfig";
 
 const FORM_URL = "https://readdy.ai/api/form/da6rskmij9sffln41kug";
 
@@ -11,38 +20,43 @@ const contactMethods = [
   {
     icon: "ri-map-pin-2-line",
     title: "Head Office",
-    text: "6th Road, Rawalpindi, Pakistan",
+    text: HEAD_OFFICE,
     tone: "bg-primary-500",
   },
   {
     icon: "ri-phone-line",
     title: "Phone",
-    text: "+92 300 000 0000",
+    text: CEO_PHONE,
     tone: "bg-primary-500",
+    href: `tel:${CEO_PHONE.replace(/\s/g, "")}`,
   },
   {
     icon: "ri-mail-line",
     title: "Email",
-    text: "admissions@mubarakhostels.pk",
+    text: CEO_EMAIL,
     tone: "bg-primary-500",
+    href: `mailto:${CEO_EMAIL}`,
   },
   {
     icon: "ri-time-line",
     title: "Business Hours",
-    text: "Daily · 9:00 AM — 9:00 PM",
+    text: OFFICE_HOURS,
     tone: "bg-accent-500",
   },
   {
     icon: "ri-whatsapp-line",
     title: "WhatsApp",
-    text: "+92 300 000 0000",
+    text: CEO_PHONE,
     tone: "bg-secondary-500",
+    href: whatsappLink(CEO_WHATSAPP, DEFAULT_WHATSAPP_MESSAGE),
+    external: true,
   },
   {
     icon: "ri-alarm-warning-line",
     title: "Emergency",
-    text: "+92 300 000 0999 (24/7)",
+    text: `${CEO_PHONE} (24/7)`,
     tone: "bg-accent-500",
+    href: `tel:${CEO_PHONE.replace(/\s/g, "")}`,
   },
 ];
 
@@ -148,7 +162,18 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-foreground-500">{c.title}</div>
-                  <div className="text-foreground-950 font-semibold mt-1">{c.text}</div>
+                  {c.href ? (
+                    <a
+                      href={c.href}
+                      target={c.external ? "_blank" : undefined}
+                      rel={c.external ? "noopener noreferrer" : undefined}
+                      className="text-foreground-950 font-semibold mt-1 inline-block hover:text-primary-600 cursor-pointer"
+                    >
+                      {c.text}
+                    </a>
+                  ) : (
+                    <div className="text-foreground-950 font-semibold mt-1">{c.text}</div>
+                  )}
                 </div>
               </div>
             ))}
@@ -280,7 +305,7 @@ export default function Contact() {
             <div className="rounded-2xl overflow-hidden border border-background-200 flex-1 min-h-[420px]">
               <iframe
                 title="Mubarak Group of Hostels — Head Office Location"
-                src="https://maps.google.com/maps?q=6th%20Road%20Rawalpindi&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=J3RC%2BJR8%20D%20Block%20Satellite%20Town%20Rawalpindi%2046300&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 className="w-full h-full border-0"
                 loading="lazy"
               ></iframe>
@@ -288,7 +313,7 @@ export default function Contact() {
             <div className="mt-4 flex items-start gap-3">
               <i className="ri-map-pin-line text-primary-600 mt-0.5"></i>
               <p className="text-sm text-foreground-600">
-                Head office: 6th Road, Rawalpindi. Walk-ins welcome daily from 9:00 AM
+                Head office: Satellite Town, Rawalpindi. Walk-ins welcome daily from 9:00 AM
                 to 9:00 PM — we'd love to show you around.
               </p>
             </div>

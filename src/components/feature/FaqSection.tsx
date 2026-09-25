@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { faqs } from "@/mocks/site";
+import { CEO_WHATSAPP, DEFAULT_WHATSAPP_MESSAGE, whatsappLink } from "@/lib/siteConfig";
 
 function FaqItem({ q, a, open, onToggle }: { q: string; a: string; open: boolean; onToggle: () => void }) {
   return (
@@ -31,10 +32,18 @@ export default function FaqSection() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground-950 mt-3">
             Everything you need to know
           </h2>
-          <p className="mt-4 text-foreground-600">
-            Can't find what you're looking for? Message us on WhatsApp and our team will help you
-            right away.
-          </p>
+<p className="mt-4 text-foreground-600">
+              Can't find what you're looking for?{" "}
+              <a
+                href={whatsappLink(CEO_WHATSAPP, DEFAULT_WHATSAPP_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-600 font-semibold hover:text-primary-700 cursor-pointer"
+              >
+                Message us on WhatsApp
+              </a>{" "}
+              and our team will help you right away.
+            </p>
         </div>
 
         <div className="mt-10 space-y-3">

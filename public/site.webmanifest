@@ -1,0 +1,14 @@
+{
+  "name": "Mubarak Group of Hostels",
+  "short_name": "Mubarak Hostels",
+  "description": "Premium boys student hostels in Rawalpindi — clean rooms, quality mess, 24/7 security, high-speed Wi-Fi and laundry. Book your seat at Jinnah, Sama or Abdul Qadeer Hostel today.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#155e75",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
