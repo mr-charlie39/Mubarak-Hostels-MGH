@@ -129,7 +129,7 @@ export default function Hostels() {
                           {warden.name}
                         </div>
                         <div className="text-xs text-foreground-500 truncate">
-                          {warden.position ?? "Warden"}
+                          {(warden.position ?? "Manager").replace(/Warden/gi, "Manager")}
                         </div>
                       </div>
                     </div>

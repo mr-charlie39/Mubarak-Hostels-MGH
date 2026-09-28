@@ -171,25 +171,25 @@ export default function About() {
       {/* Leadership Team */}
       <TeamSection showWardens={false} />
 
-      {/* Wardens */}
+      {/* Managers */}
       <section className="py-24 px-4 md:px-8 bg-background-100">
         <div className="mx-auto max-w-7xl">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs tracking-[0.3em] uppercase text-primary-600 font-semibold">
-              Our Wardens
+              Our Manager
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground-950 mt-3">
               The caretakers of every residence
             </h2>
             <p className="mt-4 text-foreground-600">
-              Every hostel has a dedicated resident warden responsible for the safety, discipline
+              Every hostel has a dedicated resident manager responsible for the safety, discipline
               and wellbeing of its students — available on-site around the clock.
             </p>
           </div>
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {wardens.length === 0 ? (
               <div className="sm:col-span-2 lg:col-span-3 text-center py-10 text-foreground-500 text-sm">
-                Warden details will appear here once accounts are assigned.
+                Manager details will appear here once accounts are assigned.
               </div>
             ) : (
               wardens.map((w) => {
@@ -208,7 +208,7 @@ export default function About() {
                     </div>
                     <div className="mt-4 text-center">
                       <h3 className="font-heading text-lg font-bold text-foreground-950">{w.name}</h3>
-                      <div className="text-sm text-foreground-500 mt-0.5">{w.position ?? "Warden"}</div>
+                      <div className="text-sm text-foreground-500 mt-0.5">{(w.position ?? "Manager").replace(/Warden/gi, "Manager")}</div>
                     </div>
                     <div className="mt-5 pt-5 border-t border-background-200 space-y-2.5 text-sm">
                       <div className="flex items-start gap-2">

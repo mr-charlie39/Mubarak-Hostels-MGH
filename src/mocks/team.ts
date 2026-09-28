@@ -3,6 +3,8 @@ import usamaPhoto from "@/assets/usama-rafiq.jpeg";
 import yousafPhoto from "@/assets/yousaf-mehsood.jpeg";
 import abdullahPhoto from "@/assets/abdullah.jpeg";
 import bilalPhoto from "@/assets/bilal-ahmed.jpeg";
+import badarPhoto from "@/assets/badar-mahmood.jpeg";
+import quaidPhoto from "@/assets/quaid-lucky.jpeg";
 
 export const ceo = {
   name: "Mubarak Mehdi",
@@ -24,6 +26,7 @@ export type TeamMember = {
   photo: string;
   email?: string;
   phone?: string;
+  hostel?: string;
 };
 
 export const leadership: TeamMember[] = [
@@ -33,6 +36,22 @@ export const leadership: TeamMember[] = [
     photo: usamaPhoto,
     email: "usamarafiq276@gmail.com",
     phone: "0302 9272481",
+  },
+  {
+    name: "Badar Mahmood",
+    role: "Mess Warden",
+    hostel: "Jinnah Hostel",
+    photo: badarPhoto,
+    email: "badarmahmood823@gmail.com",
+    phone: "+92 313 0591478",
+  },
+  {
+    name: "Quaid Lucky",
+    role: "Night Warden",
+    hostel: "Sama Hostel",
+    photo: quaidPhoto,
+    email: "qaidhussain121321@gmail.com",
+    phone: "+92 309 9745945",
   },
 ];
 
