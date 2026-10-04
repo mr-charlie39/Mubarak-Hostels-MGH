@@ -173,7 +173,7 @@ const STUDENT_SAMPLE = [
   "Ahmed Raza",
   "61101-2345678-1",
   "0300-1110001",
-  "Jinnah Boys House",
+  "Jinnah House",
   "A1",
   "1",
   "3-Seater Comfort",
@@ -196,7 +196,7 @@ const ROOM_HEADERS = [
   "Status",
 ];
 const ROOM_SAMPLE = [
-  "Jinnah Boys House",
+  "Jinnah House",
   "A1",
   "1",
   "3-Seater Comfort",

@@ -113,7 +113,7 @@ This is built with temporary sample data first; a backend will be connected late
 
 ## 10. Warden, Complaint & Reporting System (implemented)
 - **Roles expanded:** `admin` (Super Admin), `superintendent`, `warden`, `student` — stored in `profiles.role`. `profiles.hostel_id` maps a warden to a hostel; `profiles.student_id` links a student account.
-- **Official wardens:** Yousaf Mehsood (Jinnah Hostel #1), Abdullah (Sama Hostel #2), Bilah Ahmed (Abdul Qadir Hostel #3). Accounts are created/updated by the one-time `bootstrap-wardens` function.
+- **Official wardens:** Yousaf Mehsood (Jinnah House #1), Abdullah (SAMA House #2), Bilah Ahmed (Dr. Abdul Qadeer Khan House #3). Accounts are created/updated by the one-time `bootstrap-wardens` function.
 - **Database:** new `hostels`, `students` and `complaints` tables with RLS. A complaint references the student, hostel and responsible warden.
 - **Edge functions:** `manage-wardens` (list/create/update/reset-password/activate/deactivate/delete; admin-only server check), `complaints-api` (server-side role + hostel filtering; a new complaint auto-routes to the hostel's warden), `reports-api` (aggregated live figures with filters).
 - **Warden scoping:** a warden only ever sees their own hostel's students and complaints — enforced server-side (RLS + function checks), never trusted from the client.

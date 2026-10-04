@@ -88,7 +88,7 @@ export default function NoticeFormModal({
                 onChange={(e) => setHostelId(e.target.value === "" ? "" : Number(e.target.value))}
                 className="w-full px-3 py-2.5 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 cursor-pointer"
               >
-                <option value="">Select a hostel…</option>
+                <option value="">Select a house…</option>
                 {hostels.map((h) => (
                   <option key={h.id} value={h.id}>
                     {h.name}

@@ -24,7 +24,7 @@ export default function HostelNotices() {
             </h1>
             <p className="mt-3 text-background-200 text-sm md:text-base">
               {hostel
-                ? `Official announcements from the warden of ${hostel.name}`
+                ? `Official announcements from the manager of ${hostel.name}`
                 : "Official announcements for this hostel"}
             </p>
           </div>

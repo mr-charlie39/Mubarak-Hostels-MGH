@@ -7,7 +7,7 @@ import Topbar from "./components/Topbar";
 const titles: Record<string, string> = {
   "/manage": "Dashboard",
   "/manage/hostels": "Hostels",
-  "/manage/wardens": "Hostel Admins",
+  "/manage/wardens": "Managers",
   "/manage/students": "Students",
   "/manage/rooms": "Rooms & Beds",
   "/manage/bookings": "Bookings",

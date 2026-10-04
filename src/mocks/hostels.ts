@@ -1,10 +1,12 @@
+import { houseCardImage, photos1, photos2, photos3, roomCategoryImage, videos1, videos2, videos3 } from "@/mocks/houseMedia";
+
 export const hostels = [
   {
     id: 1,
-    name: "Jinnah Hostel",
+    name: "Jinnah House",
     gender: "boys",
     location: "Satellite Town, Rawalpindi",
-    image: "https://readdy.ai/api/search-image?query=Modern%20five%20storey%20student%20hostel%20building%20exterior%20with%20warm%20cream%20facade%20and%20sage%20green%20accent%20details%2C%20clean%20minimal%20residential%20architecture%2C%20manicured%20landscaped%20entrance%20with%20lush%20green%20plants%20and%20trees%2C%20warm%20golden%20hour%20sunlight%2C%20clear%20blue%20sky%2C%20professional%20architectural%20photography&width=1000&height=700&seq=hostel-01-jinnah&orientation=landscape",
+    image: "/houses/jinnah-house/house-1.jpeg",
     rooms: 50,
     floors: 5,
     beds: 150,
@@ -13,10 +15,10 @@ export const hostels = [
   },
   {
     id: 2,
-    name: "Sama Hostel",
+    name: "SAMA House",
     gender: "boys",
     location: "Satellite Town, Rawalpindi",
-    image: "https://readdy.ai/api/search-image?query=Contemporary%20student%20hostel%20building%20exterior%20with%20warm%20beige%20facade%20and%20modern%20windows%2C%20four%20storey%20clean%20residential%20architecture%2C%20tidy%20landscaped%20front%20garden%20with%20green%20shrubs%20and%20pathway%2C%20soft%20warm%20morning%20light%2C%20bright%20blue%20sky%2C%20professional%20architectural%20photography&width=1000&height=700&seq=hostel-02-sama&orientation=landscape",
+    image: "/houses/sama-house/3-seater-3.jpeg",
     rooms: 50,
     floors: 5,
     beds: 150,
@@ -25,10 +27,10 @@ export const hostels = [
   },
   {
     id: 3,
-    name: "Abdul Qadeer Hostel",
+    name: "Dr. Abdul Qadeer Khan House",
     gender: "boys",
     location: "Satellite Town, Rawalpindi",
-    image: "https://readdy.ai/api/search-image?query=Elegant%20student%20hostel%20residence%20exterior%20with%20warm%20sandstone%20facade%20and%20balcony%20railings%2C%20modern%20clean%20architecture%20with%20large%20windows%2C%20neat%20entrance%20with%20potted%20plants%20and%20green%20landscaping%2C%20warm%20late%20afternoon%20golden%20light%2C%20clear%20sky%2C%20professional%20architectural%20photography&width=1000&height=700&seq=hostel-03-abdulqadir&orientation=landscape",
+    image: "/houses/dr-abdul-qadeer-khan/4-seater-2.jpeg",
     rooms: 50,
     floors: 5,
     beds: 150,
@@ -48,33 +50,53 @@ export const facilities = [
   { icon: "ri-book-open-line", title: "Study Lounges", desc: "Quiet, well-lit study zones designed for focus and productivity." },
 ];
 
+/**
+ * Monthly room rate per student, in PKR, keyed by house id then room capacity.
+ *
+ * SAMA House is the premium branch. Jinnah House and Dr. Abdul Qadeer Khan House
+ * share the standard pricing tier.
+ */
+export const roomRates: Record<number, Record<number, number>> = {
+  1: { 2: 21000, 3: 19000, 4: 18000, 5: 17000 },
+  2: { 2: 25000, 3: 24000, 4: 23000, 5: 21000 },
+  3: { 2: 21000, 3: 19000, 4: 18000, 5: 17000 },
+};
+
+/** Rates used when a house has no explicit entry for a capacity. */
+export const DEFAULT_ROOM_RATES: Record<number, number> = { 2: 21000, 3: 19000, 4: 18000, 5: 17000 };
+
+/** Resolve the monthly rate for a room capacity at a given house. */
+export function getRoomRate(capacity: number, hostelId?: number | null): number {
+  return roomRates[hostelId ?? 0]?.[capacity] ?? DEFAULT_ROOM_RATES[capacity] ?? 0;
+}
+
 export const rooms = [
   {
     type: "2-Seater Deluxe",
     capacity: 2,
-    price: 22000,
-    image: "https://readdy.ai/api/search-image?query=Elegant%20premium%20student%20hostel%20room%20with%20two%20single%20wooden%20beds%2C%20crisp%20white%20linen%2C%20warm%20wooden%20study%20desk%2C%20soft%20green%20cushions%2C%20warm%20natural%20daylight%20through%20large%20window%2C%20clean%20minimalist%20cozy%20interior%20photography&width=800&height=600&seq=room-2seater-mub&orientation=landscape",
+    price: 21000,
+    image: roomCategoryImage[2],
     features: ["Attached bath", "Study desks", "Wardrobes", "AC"],
   },
   {
     type: "3-Seater Comfort",
     capacity: 3,
-    price: 17000,
-    image: "https://readdy.ai/api/search-image?query=Bright%20clean%20three%20bed%20student%20hostel%20room%20with%20warm%20wooden%20furniture%2C%20crisp%20white%20bedding%20on%20three%20single%20beds%2C%20shared%20study%20desk%20with%20green%20lamp%2C%20soft%20natural%20light%20from%20window%2C%20cozy%20premium%20accommodation%20interior&width=800&height=600&seq=room-3seater-mub&orientation=landscape",
+    price: 19000,
+    image: roomCategoryImage[3],
     features: ["Attached bath", "Individual desks", "Wardrobes", "Fan"],
   },
   {
     type: "4-Seater Standard",
     capacity: 4,
-    price: 14000,
-    image: "https://readdy.ai/api/search-image?query=Spacious%20four%20bed%20student%20hostel%20room%20with%20warm%20cream%20walls%2C%20four%20neatly%20made%20single%20beds%20with%20white%20linen%2C%20wooden%20study%20area%2C%20soft%20daylight%2C%20clean%20organized%20interior%2C%20professional%20accommodation%20photography&width=800&height=600&seq=room-4seater-mub&orientation=landscape",
+    price: 18000,
+    image: roomCategoryImage[4],
     features: ["Shared bath", "Study area", "Wardrobes", "Fan"],
   },
   {
     type: "5-Seater Economy",
     capacity: 5,
-    price: 11000,
-    image: "https://readdy.ai/api/search-image?query=Well%20organized%20five%20bed%20budget%20student%20hostel%20room%20with%20warm%20beige%20walls%2C%20five%20single%20beds%20with%20crisp%20linens%2C%20small%20wooden%20lockers%2C%20natural%20daylight%2C%20clean%20cozy%20interior%20photography%20of%20affordable%20accommodation&width=800&height=600&seq=room-5seater-mub&orientation=landscape",
+    price: 17000,
+    image: roomCategoryImage[5],
     features: ["Shared bath", "Lockers", "Common desk", "Fan"],
   },
 ];
@@ -90,12 +112,9 @@ export const hostelDetails = [
       "Three freshly prepared meals a day — breakfast, lunch and dinner — cooked in our in-house kitchen. A weekly menu keeps things varied, with special Friday barbecue dinners.",
     wifi:
       "Dedicated fiber-optic line with 100 Mbps symmetrical speeds, individual access points on every floor and a backup connection to keep study time uninterrupted.",
-    gallery: [
-      "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/e9ad4da2-16f3-4b8d-bf98-ad90e7d6ca75_compressed_unnamed-7.webp",
-      "https://readdy.ai/api/search-image?query=Clean%20bright%20student%20hostel%20bedroom%20with%20neatly%20made%20single%20beds%2C%20white%20linen%2C%20wooden%20wardrobes%20and%20study%20desk%2C%20large%20window%20with%20soft%20natural%20light%2C%20warm%20cozy%20premium%20interior&width=1000&height=700&seq=gal-1-b&orientation=landscape",
-      "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/e80b966a-564a-4b35-8f12-7425b286500b_compressed_unnamed-6.webp",
-      "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/31d7cd4e-7789-4a9a-99eb-dde331f13bb9_compressed_unnamed-1.webp",
-    ],
+    gallery: photos1.map((p) => p.src),
+    galleryLabels: photos1.map((p) => p.label),
+    videos: videos1,
   },
   {
     id: 2,
@@ -107,12 +126,9 @@ export const hostelDetails = [
       "Home-style Pakistani meals served three times a day, with a rotating menu, hygienic kitchen and optional tuck shop for late-night snacks.",
     wifi:
       "High-speed fiber Wi-Fi available in every room, common areas and the rooftop study deck, with 24/7 technical support.",
-    gallery: [
-      "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/db69d22d-f7de-46d5-bd73-201f66a529af_compressed_unnamed-3.webp",
-      "https://readdy.ai/api/search-image?query=Bright%20clean%20three%20bed%20student%20hostel%20room%20with%20wooden%20bunk%20beds%2C%20white%20bedding%2C%20study%20desks%2C%20soft%20daylight%20through%20window%2C%20organized%20premium%20interior&width=1000&height=700&seq=gal-2-b&orientation=landscape",
-      "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/b3c6a844-4444-434f-b25a-221a79675a38_compressed_unnamed-9.webp",
-      "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/f4fc409f-5ee7-47ba-8c6-6dfee5a58986_compressed_unnamed-4.webp",
-    ],
+    gallery: photos2.map((p) => p.src),
+    galleryLabels: photos2.map((p) => p.label),
+    videos: videos2,
   },
   {
     id: 3,
@@ -124,12 +140,9 @@ export const hostelDetails = [
       "Balanced daily menu with breakfast, lunch and dinner, plus a hydration station with filtered cold and hot water on every floor.",
     wifi:
       "Dual fiber connections for redundancy, mesh Wi-Fi across all floors and gigabit-capable routers for seamless video calls and streaming.",
-    gallery: [
-      "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/e9ad4da2-16f3-4b8d-bf98-ad90e7d6ca75_compressed_unnamed-7.webp",
-      "https://readdy.ai/api/search-image?query=Bright%20four%20bed%20student%20hostel%20room%20with%20cream%20walls%2C%20neatly%20made%20beds%2C%20wooden%20study%20tables%2C%20large%20window%20with%20natural%20light%2C%20clean%20organized%20space&width=1000&height=700&seq=gal-3-b&orientation=landscape",
-      "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/e80b966a-564a-4b35-8f12-7425b286500b_compressed_unnamed-6.webp",
-      "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/31d7cd4e-7789-4a9a-99eb-dde331f13bb9_compressed_unnamed-1.webp",
-    ],
+    gallery: photos3.map((p) => p.src),
+    galleryLabels: photos3.map((p) => p.label),
+    videos: videos3,
   },
 ];
 

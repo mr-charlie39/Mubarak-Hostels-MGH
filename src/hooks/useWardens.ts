@@ -56,17 +56,17 @@ export function useWardens() {
             position: string | null;
           }[]).map((w) => ({
             id: w.id,
-            name: w.name ?? "Warden",
+            name: w.name ?? "Manager",
             email: w.email,
             phone: w.phone,
             hostelId: w.hostel_id,
             avatarUrl: w.avatar_url,
-            position: w.position ?? "Warden",
+            position: w.position ?? "Manager",
           }))
         );
       }
     } catch (e) {
-      setError((e as Error).message || "Could not load wardens.");
+      setError((e as Error).message || "Could not load managers.");
       setWardens([]);
     } finally {
       setLoading(false);

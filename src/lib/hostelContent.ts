@@ -11,6 +11,7 @@
 import { hostelDetails, hostelLocations } from "@/mocks/hostels";
 import { getRoomImage } from "@/lib/roomImages";
 import { getHostelImage } from "@/lib/hostelImages";
+import type { HouseVideo } from "@/mocks/houseMedia";
 import type { Hostel } from "@/lib/hostelsDb";
 
 export type DetailContent = {
@@ -20,6 +21,10 @@ export type DetailContent = {
   food: string;
   wifi: string;
   gallery: string[];
+  /** Optional per-image captions. Falls back to the page's category rotation. */
+  galleryLabels?: string[];
+  /** Room walkthrough videos for this house. */
+  videos: HouseVideo[];
 };
 
 export type LocationContent = {
@@ -44,6 +49,8 @@ export function getHostelDetail(id: number, hostel?: Hostel): DetailContent {
       food: mock.food,
       wifi: mock.wifi,
       gallery: mock.gallery,
+      galleryLabels: mock.galleryLabels,
+      videos: mock.videos ?? [],
     };
   }
   const lead = getHostelImage(id, hostel?.image ?? null);
@@ -57,6 +64,7 @@ export function getHostelDetail(id: number, hostel?: Hostel): DetailContent {
     food: "Three freshly prepared meals a day from our in-house kitchen with a rotating weekly menu.",
     wifi: "High-speed Wi-Fi available in every room and the common areas.",
     gallery: [lead, getRoomImage(`${id}-A1`), getRoomImage(`${id}-B1`), getRoomImage(`${id}-C1`)],
+    videos: [],
   };
 }
 

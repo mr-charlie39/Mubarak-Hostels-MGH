@@ -39,7 +39,7 @@ export default function About() {
           <p className="mt-6 text-foreground-700 leading-relaxed">
             For over a decade, Mubarak Group of Hostels has been redefining what student living should
             feel like — clean rooms, fresh food, a strong sense of community and around-the-clock
-            security. Across our hostels in Rawalpindi, we host students from universities all over
+            security. Across our houses in Rawalpindi, we host students from universities all over
             Pakistan, giving them the peace of mind to focus on what really matters: their studies
             and their future.
           </p>

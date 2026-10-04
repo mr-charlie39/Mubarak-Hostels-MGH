@@ -35,7 +35,7 @@ if (chosen) {
   };
   const created = await req("/public/bookings", {
     method: "POST",
-    body: { hostel_id: 1, hostel_name: "Jinnah Boys House", room_label: chosen.room, block: chosen.room.charAt(0), floor: 1, bed_number: chosen.bed, applicant },
+    body: { hostel_id: 1, hostel_name: "Jinnah House", room_label: chosen.room, block: chosen.room.charAt(0), floor: 1, bed_number: chosen.bed, applicant },
   });
   ok("create booking", created.status === 201, created.data?.id ?? created.data?.error);
   const bookingId = created.data?.id;

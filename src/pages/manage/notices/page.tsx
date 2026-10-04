@@ -110,8 +110,8 @@ export default function Notices() {
           <h2 className="font-heading text-xl font-bold text-foreground-950">Notices Board</h2>
           <p className="text-sm text-foreground-600 mt-1">
             {isWarden
-              ? "Post announcements for the students of your hostel."
-              : "Post and manage announcements across all hostels."}
+              ? "Post announcements for the students of your house."
+              : "Post and manage announcements across all houses."}
           </p>
         </div>
         <button
@@ -134,13 +134,13 @@ export default function Notices() {
 
       {isStaffAdmin && (
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-sm font-medium text-foreground-700">Filter by hostel:</span>
+          <span className="text-sm font-medium text-foreground-700">Filter by house:</span>
           <select
             value={filterHostel}
             onChange={(e) => setFilterHostel(e.target.value === "" ? "" : Number(e.target.value))}
             className="px-3 py-2 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 cursor-pointer"
           >
-            <option value="">All hostels</option>
+            <option value="">All houses</option>
             {hostels.map((h) => (
               <option key={h.id} value={h.id}>
                 {h.name}
@@ -177,7 +177,7 @@ export default function Notices() {
             </div>
             <p className="mt-3 text-sm text-foreground-500">
               {isWarden
-                ? "No notices posted for your hostel yet."
+                ? "No notices posted for your house yet."
                 : "No notices found for the selected hostel."}
             </p>
           </div>

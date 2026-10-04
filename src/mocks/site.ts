@@ -1,7 +1,7 @@
 export const faqs = [
   {
     q: "How do I apply for admission at Mubarak Group of Hostels?",
-    a: "Simply click the 'Book a Room' button anywhere on the website, choose your hostel, room type and bed, share your details, and submit. Our team reviews every request and responds within 24 hours.",
+    a: "Simply click the 'Book a Room' button anywhere on the website, choose your house, room type and bed, share your details, and submit. Our team reviews every request and responds within 24 hours.",
   },
   {
     q: "What documents do I need to submit?",
@@ -9,7 +9,7 @@ export const faqs = [
   },
   {
     q: "What room types are available and how much do they cost?",
-    a: "We offer 2-Seater, 3-Seater, 4-Seater and 5-Seater rooms. Monthly fees vary by hostel and room type, typically ranging from Rs 11,000 to Rs 22,000 per student. Check individual hostel pages for exact pricing and real-time availability.",
+    a: "We offer 2-Seater, 3-Seater, 4-Seater and 5-Seater rooms. Monthly fees vary by house and room type, typically ranging from Rs 17,000 to Rs 25,000 per student. SAMA House is our premium branch, while Jinnah House and Dr. Abdul Qadeer Khan House offer the most affordable rates. Check individual house pages for exact pricing and real-time availability.",
   },
   {
     q: "Is food or mess service included?",
@@ -17,27 +17,27 @@ export const faqs = [
   },
   {
     q: "Is the hostel safe and secure?",
-    a: "Absolutely. Every hostel has 24/7 CCTV surveillance, trained security guards, biometric or controlled entry, and strict visitor management. Resident wardens are on-site around the clock.",
+    a: "Absolutely. Every hostel has 24/7 CCTV surveillance, trained security guards, biometric or controlled entry, and strict visitor management. Resident managers are on-site around the clock.",
   },
   {
     q: "Is there high-speed internet available?",
-    a: "Yes, all our hostels provide high-speed fiber-optic Wi-Fi with coverage across rooms, common areas and study lounges, with backup connections to keep you online during study and exams.",
+    a: "Yes, all our houses provide high-speed fiber-optic Wi-Fi with coverage across rooms, common areas and study lounges, with backup connections to keep you online during study and exams.",
   },
   {
     q: "What is the check-in and check-out process?",
-    a: "Once your application is approved, you select your hostel, floor, room and seat, complete any deposit, and check in. When leaving, we process your final settlement, clear any outstanding fees and release your seat for the next student.",
+    a: "Once your application is approved, you select your house, floor, room and seat, complete any deposit, and check in. When leaving, we process your final settlement, clear any outstanding fees and release your seat for the next student.",
   },
   {
     q: "How do I pay my monthly fee?",
-    a: "Monthly fees can be paid directly to the hostel office or warden. Every payment is recorded digitally with a receipt, so you can always track your balance and payment history.",
+    a: "Monthly fees can be paid directly to the house office or manager. Every payment is recorded digitally with a receipt, so you can always track your balance and payment history.",
   },
   {
     q: "Can I visit the hostel before applying?",
-    a: "Yes, walk-in visits are welcome every day from 9:00 AM to 9:00 PM. You can also message us on WhatsApp to arrange a tour of any of our hostels.",
+    a: "Yes, walk-in visits are welcome every day from 9:00 AM to 9:00 PM. You can also message us on WhatsApp to arrange a tour of any of our houses.",
   },
   {
     q: "Can I transfer to a different room or hostel?",
-    a: "Yes. Room transfers are possible subject to availability and management approval. Simply speak to your warden or the admissions office to request a transfer.",
+    a: "Yes. Room transfers are possible subject to availability and management approval. Simply speak to your manager or the admissions office to request a transfer.",
   },
   {
     q: "What is the security deposit policy?",

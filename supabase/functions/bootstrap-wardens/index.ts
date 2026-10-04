@@ -35,7 +35,7 @@ const HOSTEL_ADMINS = [
     password: "jinnah12",
     phone: "03419715017",
     hostelId: 1,
-    position: "Warden, Jinnah Boys House",
+    position: "Manager, Jinnah House",
     avatarUrl: "https://static.readdy.ai/image/773d73dcd4bfe3b3ab546a821d990052/8f6a18793fdfdc4a44c7458f6edc225e.png",
   },
   {
@@ -44,7 +44,7 @@ const HOSTEL_ADMINS = [
     password: "sama123",
     phone: "03105948138",
     hostelId: 2,
-    position: "Warden, Sama Boys House",
+    position: "Manager, SAMA House",
     avatarUrl: "https://static.readdy.ai/image/773d73dcd4bfe3b3ab546a821d990052/975047ec2596c0f071aabe1219285608.png",
   },
   {
@@ -53,7 +53,7 @@ const HOSTEL_ADMINS = [
     password: "qadeer1234",
     phone: "03045889984",
     hostelId: 3,
-    position: "Warden, Abdul Qadeer Boys House",
+    position: "Manager, Dr. Abdul Qadeer Khan House",
     avatarUrl: "https://static.readdy.ai/image/773d73dcd4bfe3b3ab546a821d990052/ac895ff6c5b9f7bc513e57b688cb7400.jpeg",
   },
 ];

@@ -99,7 +99,7 @@ export default function HostelNavbar({ id, name }: Props) {
             className="px-4 py-2.5 rounded-md border border-background-300 text-sm font-semibold whitespace-nowrap cursor-pointer transition"
           >
             <i className="ri-user-settings-line mr-1.5"></i>
-            Warden Login
+            Manager Login
           </Link>
           <Link
             to={`/booking?hostel=${id}`}

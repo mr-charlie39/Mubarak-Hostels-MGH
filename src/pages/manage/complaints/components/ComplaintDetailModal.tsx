@@ -139,7 +139,7 @@ export default function ComplaintDetailModal({
             {row("Student ID", complaint.student_code ?? "—")}
             {row("Hostel", hostelName ?? "—")}
             {row("Room", complaint.room ?? "—")}
-            {row("Assigned Warden", wardenName ?? "Auto-routing pending")}
+            {row("Assigned Manager", wardenName ?? "Auto-routing pending")}
             {row("Priority", <span className={priorityTone[complaint.priority] ?? ""}>{complaint.priority}</span>)}
             {row("Submitted", new Date(complaint.created_at).toLocaleString())}
           </div>

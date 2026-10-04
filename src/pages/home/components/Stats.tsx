@@ -48,12 +48,12 @@ export default function Stats() {
   const floorsPerHostel = hostels.length ? Math.max(...hostels.map((h) => h.floors)) : 0;
 
   const stats = [
-    { value: totalHostels, suffix: "", label: "Hostels", icon: "ri-building-2-line" },
+    { value: totalHostels, suffix: "", label: "Houses", icon: "ri-building-2-line" },
     { value: totalRooms, suffix: "+", label: "Rooms", icon: "ri-door-open-line" },
     { value: totalBeds, suffix: "+", label: "Beds", icon: "ri-hotel-bed-line" },
     { value: totalAvailable, suffix: "", label: "Beds Available", icon: "ri-check-double-line" },
     { value: occupancy, suffix: "%", label: "Occupancy", icon: "ri-pie-chart-line" },
-    { value: floorsPerHostel, suffix: "", label: "Floors / Hostel", icon: "ri-stack-line" },
+    { value: floorsPerHostel, suffix: "", label: "Floors / House", icon: "ri-stack-line" },
   ];
 
   return (

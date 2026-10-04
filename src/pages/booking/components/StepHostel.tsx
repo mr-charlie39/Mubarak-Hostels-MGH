@@ -15,16 +15,16 @@ export default function StepHostel({ hostels, selectedId, onSelect }: Props) {
   return (
     <div>
       <h2 className="font-heading text-xl md:text-2xl font-bold text-foreground-950">
-        Choose your hostel
+        Choose your house
       </h2>
       <p className="mt-2 text-sm text-foreground-600">
-        Select a hostel to see its rooms and available beds.
+        Select a house to see its rooms and available beds.
       </p>
 
       {hostels.length === 0 ? (
         <div className="mt-10 py-16 text-center text-foreground-500">
           <i className="ri-building-2-line text-4xl block mb-3"></i>
-          <p className="text-sm">No hostels are currently available to book.</p>
+          <p className="text-sm">No houses are currently available to book.</p>
         </div>
       ) : (
         <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

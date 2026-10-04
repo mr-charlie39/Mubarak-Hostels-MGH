@@ -128,8 +128,8 @@ export default function BuildingsPage() {
             <h2 className="font-heading text-xl font-bold text-foreground-950">Buildings</h2>
             <p className="text-sm text-foreground-600 mt-1">
               {isWarden
-                ? "Buildings in your hostel, with live block, room and bed figures."
-                : "Manage buildings across all hostels. Stats are derived live from rooms and beds."}
+                ? "Buildings in your house, with live block, room and bed figures."
+                : "Manage buildings across all houses. Stats are derived live from rooms and beds."}
             </p>
           </div>
           {canEdit && (
@@ -178,7 +178,7 @@ export default function BuildingsPage() {
             <i className="ri-building-4-line text-4xl text-foreground-300"></i>
             <p className="mt-3 text-sm text-foreground-500">
               {isWarden
-                ? "No buildings have been created for your hostel yet."
+                ? "No buildings have been created for your house yet."
                 : "No buildings have been created yet."}
             </p>
           </div>

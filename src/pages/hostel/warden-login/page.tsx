@@ -34,19 +34,19 @@ export default function WardenLogin() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-background-50 px-4 text-center">
         <i className="ri-error-warning-line text-5xl text-accent-500"></i>
-        <h1 className="font-heading text-2xl font-bold text-foreground-950 mt-4">Hostel not found</h1>
+        <h1 className="font-heading text-2xl font-bold text-foreground-950 mt-4">House not found</h1>
         <Link
           to="/hostels"
           className="mt-6 px-6 py-3 rounded-md bg-primary-500 text-background-50 font-semibold cursor-pointer"
         >
-          View All Hostels
+          View All Houses
         </Link>
       </div>
     );
   }
 
   const warden = forHostel(hostel.id);
-  const wardenName = warden?.name ?? (loc.warden || "Warden");
+  const wardenName = warden?.name ?? (loc.warden || "Manager");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,7 +88,7 @@ export default function WardenLogin() {
         if (me.role === "warden" && me.hostelId !== hostel.id) {
           await signOut();
           setError(
-            `This account is not the hostel admin of ${hostel.name}. Hostel admins can only access their own hostel.`
+            `This account is not the manager of ${hostel.name}. Hostel admins can only access their own hostel.`
           );
           return;
         }
@@ -134,7 +134,7 @@ export default function WardenLogin() {
       if (role === "warden" && profile.hostel_id !== hostel.id) {
         await signOut();
         setError(
-          `This account is not the hostel admin of ${hostel.name}. Hostel admins can only access their own hostel.`
+          `This account is not the manager of ${hostel.name}. Hostel admins can only access their own hostel.`
         );
         return;
       }
@@ -178,24 +178,24 @@ export default function WardenLogin() {
         <div className="bg-background-50 border border-background-200 rounded-2xl p-6 md:p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="warden-email" className="block text-sm font-medium text-foreground-800 mb-1.5">
+              <label htmlFor="manager-email" className="block text-sm font-medium text-foreground-800 mb-1.5">
                 Username / Email
               </label>
               <input
-                id="warden-email"
+                id="manager-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400"
-                placeholder="warden@example.com"
+                placeholder="manager@example.com"
               />
             </div>
             <div>
-              <label htmlFor="warden-password" className="block text-sm font-medium text-foreground-800 mb-1.5">
+              <label htmlFor="manager-password" className="block text-sm font-medium text-foreground-800 mb-1.5">
                 Password
               </label>
               <input
-                id="warden-password"
+                id="manager-password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

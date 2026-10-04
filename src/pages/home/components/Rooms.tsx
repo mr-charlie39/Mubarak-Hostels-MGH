@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { rooms } from "@/mocks/hostels";
+import { getRoomRate, hostels, rooms } from "@/mocks/hostels";
 
 export default function Rooms() {
+  const [activeHouseId, setActiveHouseId] = useState(hostels[0]?.id ?? 1);
+  const activeHouse = hostels.find((h) => h.id === activeHouseId);
+
   return (
     <section id="rooms" className="py-24 px-4 md:px-8 bg-background-100">
       <div className="mx-auto max-w-7xl">
@@ -18,7 +22,33 @@ export default function Rooms() {
           </p>
         </div>
 
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-10 flex flex-wrap justify-center gap-2">
+          {hostels.map((h) => {
+            const isActive = h.id === activeHouseId;
+            return (
+              <button
+                key={h.id}
+                type="button"
+                onClick={() => setActiveHouseId(h.id)}
+                aria-pressed={isActive}
+                className={`px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap cursor-pointer transition ${
+                  isActive
+                    ? "bg-primary-500 text-background-50"
+                    : "bg-background-50 text-foreground-700 border border-background-200 hover:border-primary-300"
+                }`}
+              >
+                {h.name}
+              </button>
+            );
+          })}
+        </div>
+
+        <p className="mt-4 text-center text-sm text-foreground-500">
+          Showing monthly rates for{" "}
+          <span className="font-semibold text-foreground-700">{activeHouse?.name}</span>
+        </p>
+
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {rooms.map((r, i) => (
             <div
               key={r.type}
@@ -55,12 +85,12 @@ export default function Rooms() {
                 <div className="mt-5 pt-5 border-t border-background-200 flex items-end justify-between">
                   <div>
                     <div className="font-heading text-2xl font-bold text-primary-600">
-                      Rs {r.price.toLocaleString()}
+                      Rs {getRoomRate(r.capacity, activeHouseId).toLocaleString()}
                     </div>
                     <div className="text-xs text-foreground-500">per month / student</div>
                   </div>
                   <Link
-                    to="/booking"
+                    to={`/booking?hostel=${activeHouseId}`}
                     className="px-3 py-2 rounded-md bg-primary-500 hover:bg-primary-600 text-background-50 text-xs font-semibold whitespace-nowrap cursor-pointer transition"
                   >
                     Book

@@ -40,14 +40,14 @@ export default function HostelFooter({ id, name }: Props) {
           </div>
 
           <div>
-            <h4 className="font-heading text-background-50 font-bold mb-4">Explore This Hostel</h4>
+            <h4 className="font-heading text-background-50 font-bold mb-4">Explore This House</h4>
             <ul className="space-y-2.5 text-sm">
               {[
                 { label: "Home", to: `/hostel/${id}` },
                 { label: "Rooms & Beds", to: `/hostel/${id}/rooms` },
                 { label: "Gallery", to: `/hostel/${id}/gallery` },
                 { label: "Contact", to: `/hostel/${id}/contact` },
-                { label: "Warden Login", to: `/hostel/${id}/warden-login` },
+                { label: "Manager Login", to: `/hostel/${id}/warden-login` },
               ].map((l) => (
                 <li key={l.to}>
                   <Link to={l.to} className="hover:text-accent-400 cursor-pointer">
@@ -85,7 +85,7 @@ export default function HostelFooter({ id, name }: Props) {
           <div>© 2026 Mubarak Group of Hostels. All rights reserved.</div>
           <div className="flex gap-5">
             <Link to="/hostels" className="hover:text-accent-400 cursor-pointer">
-              All Hostels
+              All Houses
             </Link>
             <Link to="/about" className="hover:text-accent-400 cursor-pointer">
               About

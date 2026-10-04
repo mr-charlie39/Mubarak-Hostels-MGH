@@ -28,7 +28,7 @@ export default function ComplaintsWidget() {
         </div>
       ) : total === 0 ? (
         <p className="text-sm text-foreground-500 py-8 text-center">
-          No complaints found for your hostel.
+          No complaints found for your house.
         </p>
       ) : (
         <>

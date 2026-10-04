@@ -192,7 +192,7 @@ export default function StudentFormModal({
                 placeholder="0300-2220001"
               />
             </Field>
-            <Field label="Hostel">
+            <Field label="House">
               <select
                 className={`${inputClass} cursor-pointer`}
                 value={form.hostelId}

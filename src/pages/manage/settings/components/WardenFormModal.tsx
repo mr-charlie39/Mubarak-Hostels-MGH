@@ -29,7 +29,7 @@ export default function WardenFormModal({ mode, warden, saving, error, onSubmit,
     name: warden?.name ?? "",
     email: warden?.email ?? "",
     phone: warden?.phone ?? "",
-    position: warden?.position ?? "Warden",
+    position: warden?.position ?? "Manager",
     hostelId: warden?.hostel_id ? String(warden.hostel_id) : "",
     role: warden?.role ?? "warden",
     password: "",
@@ -47,7 +47,7 @@ export default function WardenFormModal({ mode, warden, saving, error, onSubmit,
       <div className="relative bg-background-50 border border-background-200 rounded-lg w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between px-6 py-5 border-b border-background-200">
           <h3 className="font-heading text-lg font-bold text-foreground-950">
-            {mode === "create" ? "Add Warden" : `Edit ${warden?.name ?? "Warden"}`}
+            {mode === "create" ? "Add Manager" : `Edit ${warden?.name ?? "Manager"}`}
           </h3>
           <button
             onClick={onClose}
@@ -71,7 +71,7 @@ export default function WardenFormModal({ mode, warden, saving, error, onSubmit,
           </div>
           <div>
             <label className="block text-sm font-medium text-foreground-800 mb-1.5">Email</label>
-            <input type="email" value={values.email} onChange={(e) => set({ email: e.target.value })} className={inputClass} placeholder="warden@example.com" />
+            <input type="email" value={values.email} onChange={(e) => set({ email: e.target.value })} className={inputClass} placeholder="manager@example.com" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -80,12 +80,12 @@ export default function WardenFormModal({ mode, warden, saving, error, onSubmit,
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground-800 mb-1.5">Position</label>
-              <input value={values.position} onChange={(e) => set({ position: e.target.value })} className={inputClass} placeholder="Warden" />
+              <input value={values.position} onChange={(e) => set({ position: e.target.value })} className={inputClass} placeholder="Manager" />
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-foreground-800 mb-1.5">Assigned Hostel</label>
+              <label className="block text-sm font-medium text-foreground-800 mb-1.5">Assigned House</label>
               <select value={values.hostelId} onChange={(e) => set({ hostelId: e.target.value })} className={`${inputClass} cursor-pointer`}>
                 <option value="">Unassigned</option>
                 {hostels.map((h) => (
@@ -97,7 +97,7 @@ export default function WardenFormModal({ mode, warden, saving, error, onSubmit,
               <div>
                 <label className="block text-sm font-medium text-foreground-800 mb-1.5">Role</label>
                 <select value={values.role} onChange={(e) => set({ role: e.target.value })} className={`${inputClass} cursor-pointer`}>
-                  <option value="warden">Warden</option>
+                  <option value="warden">Manager</option>
                   <option value="superintendent">Superintendent</option>
                 </select>
               </div>

@@ -58,6 +58,24 @@ CREATE TABLE IF NOT EXISTS hostels (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------------
+-- room_rates — monthly room rate per student, per house and room capacity
+--
+--   SAMA House (premium):
+--     2-seater 25,000 | 3-seater 24,000 | 4-seater 23,000 | 5-seater 21,000
+--   Jinnah House and Dr. Abdul Qadeer Khan House (standard):
+--     2-seater 21,000 | 3-seater 19,000 | 4-seater 18,000 | 5-seater 17,000
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS room_rates (
+  hostel_id INT UNSIGNED NOT NULL,
+  capacity  TINYINT UNSIGNED NOT NULL,
+  rate      INT UNSIGNED NOT NULL,
+  updated_at TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (hostel_id, capacity),
+  CONSTRAINT fk_room_rates_hostel FOREIGN KEY (hostel_id)
+    REFERENCES hostels (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------------------------------------------------------------------------
 -- students — hostel residents
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS students (

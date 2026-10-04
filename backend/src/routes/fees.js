@@ -185,7 +185,7 @@ router.post("/collect", async (req, res) => {
       role: "admin",
       type: "fee",
       title: "Fee update",
-      message: `${me.name ?? "A warden"} collected PKR ${feeAmount.toLocaleString()} from ${student.name} for ${month}.`,
+      message: `${me.name ?? "A manager"} collected PKR ${feeAmount.toLocaleString()} from ${student.name} for ${month}.`,
       link: "/manage/fees",
     });
 

@@ -52,7 +52,7 @@ export function generateRooms(hostelId: number, occupiedCount: number): Room[] {
         floor,
         capacity: ROOM_CAPACITY,
         status,
-        image: getRoomImage(`${hostelId}-${label}`),
+        image: getRoomImage(`${hostelId}-${label}`, ROOM_CAPACITY),
       });
     }
   }

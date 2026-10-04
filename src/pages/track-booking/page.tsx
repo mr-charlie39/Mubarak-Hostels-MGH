@@ -244,11 +244,11 @@ export default function TrackBooking() {
                   {booking.status === "under_review" &&
                     "Your request is being reviewed by the hostel team."}
                   {booking.status === "approved" &&
-                    "Great news — your booking has been approved and your bed is reserved for you. Please visit the hostel to complete your fee and check in."}
+                    "Great news — your booking has been approved and your bed is reserved for you. Please visit the house to complete your fee and check in."}
                   {booking.status === "rejected" &&
-                    "Unfortunately this request was not approved. Please contact the hostel for details."}
+                    "Unfortunately this request was not approved. Please contact the house for details."}
                   {booking.status === "checked_in" &&
-                    "You have been checked in — welcome to your hostel!"}
+                    "You have been checked in — welcome to your house!"}
                   {booking.status === "completed" &&
                     "Your stay has been completed. Thank you for choosing Mubarak Hostels."}
                 </p>

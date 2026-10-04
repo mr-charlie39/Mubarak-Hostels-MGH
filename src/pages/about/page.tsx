@@ -26,13 +26,13 @@ const values = [
   {
     icon: "ri-award-line",
     title: "Quality Standards",
-    text: "Consistent cleanliness, maintenance and service standards audited monthly across all of our hostels.",
+    text: "Consistent cleanliness, maintenance and service standards audited monthly across all of our houses.",
   },
 ];
 
 const milestones = [
   { year: "2012", text: "Founded with our first hostel in D Block, Satellite Town, Rawalpindi, hosting 50 students." },
-  { year: "2015", text: "Expanded to three hostels with dedicated wardens and 24/7 security." },
+  { year: "2015", text: "Expanded to three hostels with dedicated managers and 24/7 security." },
   { year: "2019", text: "Introduced premium room categories, mess services and fiber Wi-Fi." },
   { year: "2022", text: "Grew to a network of hostels serving hundreds of students across Rawalpindi." },
   { year: "2026", text: "Launched our digital platform with online admissions and management." },
@@ -93,7 +93,7 @@ export default function About() {
               foundation every student needs to succeed.
             </p>
             <p className="mt-4 text-foreground-700 leading-relaxed">
-              Today, our team of wardens, managers and support staff work around the clock to
+              Today, our team of managers and support staff work around the clock to
               maintain the highest standards of cleanliness, security and student support across
               every one of our branches.
             </p>

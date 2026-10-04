@@ -137,7 +137,7 @@ export default function Students() {
               onChange={(e) => setHostelFilter(e.target.value)}
               className="px-4 py-2.5 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 cursor-pointer"
             >
-              <option value="All">All Hostels</option>
+              <option value="All">All Houses</option>
               {hostels.map((h) => (
                 <option key={h.id} value={String(h.id)}>
                   {h.name}

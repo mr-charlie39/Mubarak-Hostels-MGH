@@ -68,7 +68,7 @@ export default function RoomGrid({ hostelId }: { hostelId: number }) {
     return (
       <div className="py-20 text-center text-foreground-500">
         <i className="ri-door-open-line text-4xl block mb-3"></i>
-        <p className="text-sm">No rooms have been configured for this hostel yet.</p>
+        <p className="text-sm">No rooms have been configured for this house yet.</p>
       </div>
     );
   }
@@ -154,7 +154,7 @@ export default function RoomGrid({ hostelId }: { hostelId: number }) {
                     >
                       <div className="relative h-20 w-full overflow-hidden bg-background-100">
                         <img
-                          src={getRoomImage(`${hostelId}-${room.roomNumber}`)}
+                          src={getRoomImage(`${hostelId}-${room.roomNumber}`, room.capacity)}
                           alt={`Room ${room.roomNumber}`}
                           title={`Room ${room.roomNumber} — ${meta.label}`}
                           className="w-full h-full object-cover"

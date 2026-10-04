@@ -19,7 +19,7 @@ import StepDetails from "./components/StepDetails";
 import StepDocuments from "./components/StepDocuments";
 import StepReview from "./components/StepReview";
 
-const steps = ["Hostel", "Room", "Bed", "Details", "Documents", "Confirm"];
+const steps = ["House", "Room", "Bed", "Details", "Documents", "Confirm"];
 
 export default function Booking() {
   const [searchParams] = useSearchParams();
@@ -140,7 +140,7 @@ export default function Booking() {
               Room &amp; Bed Reservation
             </span>
             <h1 className="font-heading text-3xl md:text-5xl font-bold text-background-50 mt-2">
-              Book your hostel, room &amp; bed
+              Book your house, room &amp; bed
             </h1>
             <p className="mt-3 text-background-200 max-w-xl">
               Reserve a specific bed in a few simple steps. Your request will be reviewed by the
@@ -295,7 +295,7 @@ export default function Booking() {
                 (hostelsLoading ? (
                   <div className="flex items-center justify-center gap-2 py-20 text-foreground-500">
                     <i className="ri-loader-4-line animate-spin text-2xl"></i>
-                    <span className="text-sm">Loading hostels…</span>
+                    <span className="text-sm">Loading houses…</span>
                   </div>
                 ) : (
                   <StepHostel hostels={hostels} selectedId={hostelId} onSelect={pickHostel} />

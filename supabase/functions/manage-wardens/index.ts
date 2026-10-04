@@ -25,7 +25,7 @@ Deno.serve(async (req) => {
     .eq("id", authData.user.id)
     .maybeSingle();
   if (!caller || caller.role !== "admin") {
-    return json({ error: "Only the super admin can manage warden accounts." }, 403);
+    return json({ error: "Only the super admin can manage manager accounts." }, 403);
   }
 
   let body: Record<string, unknown> = {};
@@ -81,7 +81,7 @@ Deno.serve(async (req) => {
         phone,
         hostel_id: hostelId,
         avatar_url: avatarUrl,
-        position: position || (role === "warden" ? "Warden" : "Superintendent"),
+        position: position || (role === "warden" ? "Manager" : "Superintendent"),
         is_active: true,
         must_change_password: true,
       });

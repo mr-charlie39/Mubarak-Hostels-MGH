@@ -98,14 +98,14 @@ export default function Hostels() {
   const sections = [
     {
       key: "boys",
-      title: "Boys Hostels",
+      title: "Boys Houses",
       icon: "ri-men-line",
       iconClass: "bg-secondary-100 text-secondary-900",
       items: filtered.filter((h) => h.gender === "boys"),
     },
     {
       key: "girls",
-      title: "Girls Hostels",
+      title: "Girls Houses",
       icon: "ri-women-line",
       iconClass: "bg-accent-100 text-accent-900",
       items: filtered.filter((h) => h.gender === "girls"),
@@ -120,7 +120,7 @@ export default function Hostels() {
       <section className="relative h-[380px] md:h-[460px] overflow-hidden">
         <img
           src="https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/f4fc409f-5ee7-47ba-8c6-6dfee5a58986_compressed_unnamed-4.webp"
-          alt="Our hostels"
+          alt="Our houses"
           className="w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/80 via-foreground-950/40 to-foreground-950/20"></div>
@@ -134,13 +134,13 @@ export default function Hostels() {
               />
             </div>
             <span className="text-accent-400 text-xs tracking-[0.3em] uppercase font-semibold">
-              Our Hostels
+              Our Houses
             </span>
             <h1 className="font-heading text-4xl md:text-6xl font-bold text-background-50 mt-2">
               Comfort in every location.
             </h1>
             <p className="mt-3 text-background-200 max-w-xl">
-              Explore each of our hostels across Rawalpindi and find the one closest to your university.
+              Explore each of our houses across Rawalpindi and find the one closest to your university.
             </p>
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function Hostels() {
           {loading ? (
             <div className="py-20 text-center text-foreground-500">
               <i className="ri-loader-4-line animate-spin text-3xl"></i>
-              <p className="mt-3 text-sm">Loading hostels…</p>
+              <p className="mt-3 text-sm">Loading houses…</p>
             </div>
           ) : error ? (
             <div className="py-20 text-center">
@@ -179,7 +179,7 @@ export default function Hostels() {
             </div>
           ) : filtered.length === 0 ? (
             <div className="text-center py-20 text-foreground-500">
-              No hostels match your search.
+              No houses match your search.
             </div>
           ) : (
             sections.map((section) =>

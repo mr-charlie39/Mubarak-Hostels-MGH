@@ -167,7 +167,7 @@ export default function Suggest() {
                   rows={5}
                   maxLength={500}
                   className="w-full px-4 py-2.5 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 resize-none"
-                  placeholder="Explain how this would improve life in the hostel…"
+                  placeholder="Explain how this would improve life in the house…"
                 ></textarea>
                 <div className="mt-1 text-xs text-foreground-500 text-right">{description.length}/500</div>
               </div>

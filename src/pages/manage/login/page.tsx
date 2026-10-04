@@ -37,7 +37,7 @@ export default function ManageLogin() {
       } else {
         setSetupStatus({
           type: "success",
-          text: "System accounts are ready. The super admin, superintendent and 6 hostel admins can now sign in.",
+          text: "System accounts are ready. The super admin, superintendent and 6 house managers can now sign in.",
         });
       }
     } catch {
@@ -252,7 +252,7 @@ export default function ManageLogin() {
 
           {mode === "signup" && (
             <p className="mt-4 text-center text-xs text-foreground-500">
-              Hostel admin, superintendent and super admin accounts are created by the super admin.
+              House manager, superintendent and super admin accounts are created by the super admin.
               New sign-ups get student access and can raise complaints from the student portal.
             </p>
           )}

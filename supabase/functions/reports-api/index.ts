@@ -132,7 +132,7 @@ Deno.serve(async (req) => {
       .map((w) => ({
         id: w.id,
         name: w.name,
-        position: w.position ?? "Warden",
+        position: w.position ?? "Manager",
         hostelId: w.hostel_id,
         hostel: w.hostel_id ? visibleHostels.find((h) => h.id === w.hostel_id)?.name ?? null : null,
         students: w.hostel_id ? activeStudents.filter((s) => s.hostel_id === w.hostel_id).length : 0,

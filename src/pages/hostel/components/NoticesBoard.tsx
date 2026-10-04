@@ -27,7 +27,7 @@ export default function NoticesBoard({ hostelId }: { hostelId: number }) {
         </div>
         <div>
           <h3 className="font-heading text-lg font-bold text-foreground-950">Notices Board</h3>
-          <p className="text-xs text-foreground-500">Latest announcements from your warden</p>
+          <p className="text-xs text-foreground-500">Latest announcements from your manager</p>
         </div>
       </div>
 

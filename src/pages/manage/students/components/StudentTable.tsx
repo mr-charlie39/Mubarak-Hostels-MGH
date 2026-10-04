@@ -40,7 +40,7 @@ export default function StudentTable({ students, onView, onEdit, onDelete }: Pro
               <th className="px-4 py-3 font-semibold">Student</th>
               <th className="px-4 py-3 font-semibold">CNIC</th>
               <th className="px-4 py-3 font-semibold">Room / Bed</th>
-              <th className="px-4 py-3 font-semibold">Hostel</th>
+              <th className="px-4 py-3 font-semibold">House</th>
               <th className="px-4 py-3 font-semibold">Monthly Fee</th>
               <th className="px-4 py-3 font-semibold">Status</th>
               <th className="px-4 py-3 font-semibold text-right">Actions</th>

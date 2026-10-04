@@ -13,7 +13,7 @@ const STATUS_STYLES: Record<string, string> = {
 const ROLE_LABEL: Record<string, string> = {
   admin: "Admin",
   superintendent: "Superintendent",
-  warden: "Warden",
+  warden: "Manager",
   student: "Student",
 };
 
@@ -72,12 +72,12 @@ export default function ComplaintCard({ complaint, responses }: Props) {
 
       <div className="border-t border-background-100 px-5 py-4 bg-background-100/50">
         <div className="text-xs font-semibold uppercase tracking-wide text-foreground-500 mb-3">
-          Warden replies ({responses.length})
+          Manager replies ({responses.length})
         </div>
 
         {responses.length === 0 ? (
           <p className="text-sm text-foreground-500">
-            No replies yet. The warden will respond soon.
+            No replies yet. The manager will respond soon.
           </p>
         ) : (
           <div className="space-y-3">

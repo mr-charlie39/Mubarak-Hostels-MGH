@@ -96,7 +96,7 @@ export default function BuildingFormModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-foreground-800 mb-1.5">Hostel</label>
+            <label className="block text-sm font-medium text-foreground-800 mb-1.5">House</label>
             <select
               className={`${inputClass} cursor-pointer`}
               value={values.hostelId}

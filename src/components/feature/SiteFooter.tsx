@@ -51,7 +51,7 @@ export default function SiteFooter() {
               {[
                 { label: "Home", to: "/" },
                 { label: "About", to: "/about" },
-                { label: "Hostels", to: "/hostels" },
+                { label: "Houses", to: "/hostels" },
                 { label: "Booking", to: "/booking" },
                 { label: "Gallery", to: "/gallery" },
                 { label: "Contact", to: "/contact" },
@@ -67,12 +67,12 @@ export default function SiteFooter() {
           </div>
 
           <div>
-            <h4 className="font-heading text-background-50 font-bold mb-4">Our Hostels</h4>
+            <h4 className="font-heading text-background-50 font-bold mb-4">Our Houses</h4>
             <ul className="space-y-2 text-sm">
               {[
-                "Jinnah Hostel",
-                "Sama Hostel",
-                "Abdul Qadeer Hostel",
+                "Jinnah House",
+                "SAMA House",
+                "Dr. Abdul Qadeer Khan House",
               ].map((l) => (
                 <li key={l}>
                   <Link to="/hostels" className="hover:text-accent-400 cursor-pointer">
@@ -117,7 +117,7 @@ export default function SiteFooter() {
           <div className="flex gap-5">
             <a href="#" className="hover:text-accent-400 cursor-pointer">Privacy</a>
             <a href="#" className="hover:text-accent-400 cursor-pointer">Terms</a>
-            <a href="#" className="hover:text-accent-400 cursor-pointer">Hostel Rules</a>
+            <a href="#" className="hover:text-accent-400 cursor-pointer">House Rules</a>
           </div>
         </div>
       </footer>

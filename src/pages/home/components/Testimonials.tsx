@@ -2,7 +2,7 @@ const items = [
   {
     name: "Ahmed Raza",
     role: "MBBS · King Edward Medical University",
-    text: "Moving from Multan to Lahore was intimidating, but Mubarak Hostel felt like home from day one. Clean rooms, great food and the warden actually cares.",
+    text: "Moving from Multan to Lahore was intimidating, but Mubarak Hostel felt like home from day one. Clean rooms, great food and the manager actually cares.",
     img: "https://storage.helloreaddy.io/project_files/9cdb5fa8-b5b4-4047-a387-50ae18ce3247/e9ad4da2-16f3-4b8d-bf98-ad90e7d6ca75_compressed_unnamed-7.webp",
   },
   {

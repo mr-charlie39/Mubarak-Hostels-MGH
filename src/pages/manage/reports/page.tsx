@@ -121,13 +121,13 @@ export default function Reports() {
         <div className="flex flex-wrap items-end gap-3">
           {!isWarden && (
             <div className="min-w-[170px]">
-              <label className="block text-xs font-medium text-foreground-500 mb-1.5">Hostel</label>
+              <label className="block text-xs font-medium text-foreground-500 mb-1.5">House</label>
               <select
                 value={hostelId}
                 onChange={(e) => setHostelId(e.target.value)}
                 className="w-full px-3 py-2 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 cursor-pointer"
               >
-                <option value="">All hostels</option>
+                <option value="">All houses</option>
                 {hostels.map((h) => (
                   <option key={h.id} value={h.id}>{h.name}</option>
                 ))}
@@ -136,13 +136,13 @@ export default function Reports() {
           )}
           {!isWarden && (
             <div className="min-w-[170px]">
-              <label className="block text-xs font-medium text-foreground-500 mb-1.5">Warden</label>
+              <label className="block text-xs font-medium text-foreground-500 mb-1.5">Manager</label>
               <select
                 value={wardenId}
                 onChange={(e) => setWardenId(e.target.value)}
                 className="w-full px-3 py-2 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 cursor-pointer"
               >
-                <option value="">All wardens</option>
+                <option value="">All managers</option>
                 {(data?.wardens ?? []).map((w) => (
                   <option key={w.id} value={w.id}>{w.name}</option>
                 ))}
@@ -195,7 +195,7 @@ export default function Reports() {
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
               <StatCard label="Total Students" value={String(s.totalStudents)} icon="ri-group-line" tone="primary" sub={`${s.totalBeds} total beds`} />
               <StatCard label="Occupied Beds" value={String(s.occupiedBeds)} icon="ri-door-open-line" tone="secondary" sub={`${s.vacantBeds} vacant`} />
-              <StatCard label="Occupancy" value={`${s.occupancy}%`} icon="ri-pie-chart-line" tone="secondary" sub="across shown hostels" />
+              <StatCard label="Occupancy" value={`${s.occupancy}%`} icon="ri-pie-chart-line" tone="secondary" sub="across shown houses" />
               <StatCard label="Total Complaints" value={String(s.totalComplaints)} icon="ri-tools-line" tone="accent" sub={`${s.pendingComplaints} pending · ${s.resolvedComplaints} resolved`} />
             </div>
 
@@ -232,7 +232,7 @@ export default function Reports() {
 
               {/* Complaints by hostel */}
               <div className="bg-background-50 border border-background-200 rounded-lg p-5">
-                <h3 className="font-heading text-base font-bold text-foreground-950 mb-4">Complaints by Hostel</h3>
+                <h3 className="font-heading text-base font-bold text-foreground-950 mb-4">Complaints by House</h3>
                 {data.complaintsByHostel.length === 0 ? (
                   <p className="text-sm text-foreground-500">No hosted data available.</p>
                 ) : (
@@ -319,14 +319,14 @@ export default function Reports() {
             {/* Students + occupancy by hostel */}
             <div className="bg-background-50 border border-background-200 rounded-lg overflow-hidden">
               <div className="px-5 py-4 border-b border-background-200">
-                <h3 className="font-heading text-base font-bold text-foreground-950">Students &amp; Occupancy by Hostel</h3>
+                <h3 className="font-heading text-base font-bold text-foreground-950">Students &amp; Occupancy by House</h3>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead className="bg-background-100 text-[11px] uppercase tracking-wider text-foreground-500">
                     <tr>
-                      <th className="text-left font-semibold px-5 py-3">Hostel</th>
-                      <th className="text-left font-semibold px-5 py-3">Warden</th>
+                      <th className="text-left font-semibold px-5 py-3">House</th>
+                      <th className="text-left font-semibold px-5 py-3">Manager</th>
                       <th className="text-right font-semibold px-5 py-3">Students</th>
                       <th className="text-right font-semibold px-5 py-3">Beds</th>
                       <th className="text-right font-semibold px-5 py-3">Vacant</th>
@@ -360,15 +360,15 @@ export default function Reports() {
             {data.wardenStats.length > 0 && (
               <div className="bg-background-50 border border-background-200 rounded-lg overflow-hidden">
                 <div className="px-5 py-4 border-b border-background-200">
-                  <h3 className="font-heading text-base font-bold text-foreground-950">Warden-wise Statistics</h3>
+                  <h3 className="font-heading text-base font-bold text-foreground-950">Manager-wise Statistics</h3>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead className="bg-background-100 text-[11px] uppercase tracking-wider text-foreground-500">
                       <tr>
-                        <th className="text-left font-semibold px-5 py-3">Warden</th>
+                        <th className="text-left font-semibold px-5 py-3">Manager</th>
                         <th className="text-left font-semibold px-5 py-3">Position</th>
-                        <th className="text-left font-semibold px-5 py-3">Assigned Hostel</th>
+                        <th className="text-left font-semibold px-5 py-3">Assigned House</th>
                         <th className="text-right font-semibold px-5 py-3">Students</th>
                         <th className="text-right font-semibold px-5 py-3">Fees Collected</th>
                         <th className="text-right font-semibold px-5 py-3">Complaints</th>
@@ -408,7 +408,7 @@ export default function Reports() {
                   <thead className="bg-background-100 text-[11px] uppercase tracking-wider text-foreground-500 sticky top-0">
                     <tr>
                       <th className="text-left font-semibold px-5 py-3">Room</th>
-                      <th className="text-left font-semibold px-5 py-3">Hostel</th>
+                      <th className="text-left font-semibold px-5 py-3">House</th>
                       <th className="text-right font-semibold px-5 py-3">Students</th>
                     </tr>
                   </thead>

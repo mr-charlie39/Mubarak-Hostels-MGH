@@ -114,7 +114,7 @@ export default function BookingDetailModal({
               <Field label="Joining Date" value={a.joiningDate} />
             </div>
             <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-4 bg-background-100 rounded-md p-4">
-              <Field label="Warden" value={wardenName ?? "Unassigned"} />
+              <Field label="Manager" value={wardenName ?? "Unassigned"} />
               <Field label="Monthly Fee" value={booking.feeAmount ? `PKR ${Number(booking.feeAmount).toLocaleString()}` : "—"} />
               <Field label="Approved By" value={booking.approvedBy ?? "—"} />
               <Field label="Approved On" value={booking.approvedAt ? formatDate(booking.approvedAt) : "—"} />

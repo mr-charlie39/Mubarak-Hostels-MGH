@@ -56,7 +56,7 @@ export default function MyComplaints() {
               Track My Complaints
             </h1>
             <p className="mt-2 text-sm text-foreground-600 max-w-md mx-auto">
-              Enter your CNIC or Student ID to see your submitted complaints and the warden's
+              Enter your CNIC or Student ID to see your submitted complaints and the manager's
               replies.
             </p>
           </div>

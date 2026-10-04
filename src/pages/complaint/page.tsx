@@ -63,7 +63,7 @@ export default function ComplaintPage() {
               Submit a Complaint
             </h1>
             <p className="mt-2 text-sm text-foreground-600 max-w-md mx-auto">
-              Tell us what's wrong. Your complaint is automatically routed to the warden of your hostel —
+              Tell us what's wrong. Your complaint is automatically routed to the manager of your house —
               you don't need to choose anyone.
             </p>
             <Link
@@ -94,7 +94,7 @@ export default function ComplaintPage() {
                   </span>
                 </span>
                 <span>
-                  Assigned Warden:{" "}
+                  Assigned Manager:{" "}
                   <span className="font-medium text-foreground-900">
                     {wardenFor(result.hostel_id)?.name ?? "To be assigned"}
                   </span>

@@ -20,7 +20,7 @@ export default function Topbar({ user, title, onMenuClick, onLogout }: Props) {
   const hostelName =
     user.role === "warden" && user.hostelId
       ? hostels.find((h) => h.id === user.hostelId)?.name
-      : "All Hostels";
+      : "All Houses";
 
   const handleLogout = () => {
     onLogout();

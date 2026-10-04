@@ -15,10 +15,10 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { to: "/manage", label: "Dashboard", icon: "ri-dashboard-line", end: true },
-  { to: "/manage/hostels", label: "Hostels", icon: "ri-building-2-line", wardenLabel: "My Hostel" },
+  { to: "/manage/hostels", label: "Houses", icon: "ri-building-2-line", wardenLabel: "My House" },
   { to: "/manage/buildings", label: "Buildings", icon: "ri-building-4-line" },
   { to: "/manage/blocks", label: "Blocks", icon: "ri-layout-grid-line" },
-  { to: "/manage/wardens", label: "Hostel Admins", icon: "ri-user-star-line", roles: ["admin"] },
+  { to: "/manage/wardens", label: "Managers", icon: "ri-user-star-line", roles: ["admin"] },
   { to: "/manage/rooms", label: "Rooms & Beds", icon: "ri-door-open-line" },
   { to: "/manage/import", label: "Data Import", icon: "ri-file-excel-2-line", roles: ["admin"] },
   { to: "/manage/students", label: "Students", icon: "ri-group-line" },

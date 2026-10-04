@@ -44,12 +44,12 @@ export default function HostelHome() {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center px-4 text-center">
         <i className="ri-error-warning-line text-5xl text-accent-500"></i>
-        <h1 className="font-heading text-2xl font-bold text-foreground-950 mt-4">Hostel not found</h1>
+        <h1 className="font-heading text-2xl font-bold text-foreground-950 mt-4">House not found</h1>
         <Link
           to="/hostels"
           className="mt-6 px-6 py-3 rounded-md bg-primary-500 text-background-50 font-semibold cursor-pointer"
         >
-          View All Hostels
+          View All Houses
         </Link>
       </div>
     );
@@ -165,7 +165,7 @@ export default function HostelHome() {
             <div className="mt-8 bg-background-100 border border-background-200 rounded-2xl p-5">
               <WardenCard
                 name={wardenForHostel?.name ?? loc.warden}
-                position={wardenForHostel?.position ?? "Warden"}
+                position={wardenForHostel?.position ?? "Manager"}
                 hostelName={hostel.name}
                 phone={wardenForHostel?.phone ?? null}
                 email={wardenForHostel?.email ?? null}
@@ -370,10 +370,10 @@ export default function HostelHome() {
         <div className="mx-auto max-w-7xl bg-primary-950 rounded-3xl px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="font-heading text-2xl md:text-3xl font-bold text-background-50">
-              Are you the warden of {hostel.name}?
+              Are you the manager of {hostel.name}?
             </h2>
             <p className="mt-2 text-background-200">
-              Sign in to manage rooms, beds, students, admissions and payments for this hostel.
+              Sign in to manage rooms, beds, students, admissions and payments for this house.
             </p>
           </div>
           <Link
@@ -381,7 +381,7 @@ export default function HostelHome() {
             className="px-7 py-3.5 rounded-md bg-accent-500 hover:bg-accent-600 text-foreground-950 font-semibold whitespace-nowrap cursor-pointer transition"
           >
             <i className="ri-user-settings-line mr-1.5"></i>
-            Warden Login
+            Manager Login
           </Link>
         </div>
       </section>

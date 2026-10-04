@@ -2,11 +2,10 @@ import { Router } from "express";
 import { pool } from "../db.js";
 import { requireAuth } from "../middleware/auth.js";
 import { notify, notifyRole, audit } from "../notify.js";
+import { getRoomRate } from "../rates.js";
 
 const router = Router();
 router.use(requireAuth);
-
-const BOOKING_FEE_DEFAULT = 18000;
 
 // Generate a sequential tracking id like MGH-2026-000184
 async function nextBookingId() {
@@ -268,7 +267,7 @@ router.put("/:id/approve", async (req, res) => {
       return res.status(400).json({ error: `Bed ${bedNumber} in room ${roomLabel} is already occupied.` });
     }
 
-    const feeAmount = Number(booking.fee_amount) || BOOKING_FEE_DEFAULT;
+    const feeAmount = Number(booking.fee_amount) || (await getRoomRate(hostelId, room.capacity));
 
     // ---- create the student record ----
     const [studentResult] = await conn.query(

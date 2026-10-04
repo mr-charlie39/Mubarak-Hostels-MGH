@@ -50,8 +50,8 @@ export default function Complaints() {
           <h2 className="font-heading text-xl font-bold text-foreground-950">Complaints</h2>
           <p className="text-sm text-foreground-600 mt-1">
             {isWarden
-              ? "Complaints raised by students of your hostel."
-              : "Track and resolve complaints across all hostels."}
+              ? "Complaints raised by students of your house."
+              : "Track and resolve complaints across all houses."}
           </p>
         </div>
         <Link
@@ -65,13 +65,13 @@ export default function Complaints() {
       <div className="bg-background-50 border border-background-200 rounded-lg p-4 flex flex-wrap items-end gap-3">
         {!isWarden && (
           <div className="min-w-[180px]">
-            <label className="block text-xs font-medium text-foreground-500 mb-1.5">Hostel</label>
+            <label className="block text-xs font-medium text-foreground-500 mb-1.5">House</label>
             <select
               value={hostelId}
               onChange={(e) => setHostelId(e.target.value)}
               className="w-full px-3 py-2 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 cursor-pointer"
             >
-              <option value="">All hostels</option>
+              <option value="">All houses</option>
               {hostels.map((h) => (
                 <option key={h.id} value={h.id}>{h.name}</option>
               ))}
@@ -93,13 +93,13 @@ export default function Complaints() {
         </div>
         {!isWarden && (
           <div className="min-w-[180px]">
-            <label className="block text-xs font-medium text-foreground-500 mb-1.5">Warden</label>
+            <label className="block text-xs font-medium text-foreground-500 mb-1.5">Manager</label>
             <select
               value={wardenId}
               onChange={(e) => setWardenId(e.target.value)}
               className="w-full px-3 py-2 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 cursor-pointer"
             >
-              <option value="">All wardens</option>
+              <option value="">All managers</option>
               {wardens.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
               ))}
@@ -116,7 +116,7 @@ export default function Complaints() {
             </div>
             <p className="mt-4 text-sm text-foreground-600">
               {isWarden
-                ? "No complaints found for your hostel."
+                ? "No complaints found for your house."
                 : "No complaints match the current filters."}
             </p>
           </div>

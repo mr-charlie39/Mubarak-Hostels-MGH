@@ -116,7 +116,7 @@ async function gather({ hostelId, wardenId, status, from, to, scopeHostel }) {
         name: w.name,
         email: w.email,
         phone: w.phone,
-        position: w.position ?? "Warden",
+        position: w.position ?? "Manager",
         hostelId,
         hostel: hostelId ? visibleHostels.find((h) => Number(h.id) === hostelId)?.name ?? null : null,
         students: hostelStudents.length,
@@ -463,14 +463,14 @@ router.get("/pdf", async (req, res) => {
 
     // ---- warden block ----
     if (warden) {
-      drawSectionTitle(doc, "Warden Information");
+      drawSectionTitle(doc, "Manager Information");
       drawKVTable(doc, [
-        { label: "Warden name", value: warden.name },
+        { label: "Manager name", value: warden.name },
         { label: "Position", value: warden.position },
-        { label: "Warden ID", value: `#${warden.id}` },
+        { label: "Manager ID", value: `#${warden.id}` },
         { label: "Email", value: warden.email || "—" },
         { label: "Phone", value: warden.phone || "—" },
-        { label: "Assigned hostel", value: warden.hostel || "Unassigned" },
+        { label: "Assigned house", value: warden.hostel || "Unassigned" },
         { label: "Students", value: String(warden.students) },
         { label: "Fees collected", value: money(warden.feeCollected) },
         { label: "Complaints", value: String(warden.complaints) },
@@ -532,7 +532,7 @@ router.get("/pdf", async (req, res) => {
     drawSectionTitle(doc, "Students by Hostel");
     if (data.studentsByHostel.length) {
       drawTable(doc,
-        ["Hostel", "Warden", "Students", "Beds", "Vacant", "Occupancy %"],
+        ["House", "Manager", "Students", "Beds", "Vacant", "Occupancy %"],
         data.studentsByHostel.map((h) => [h.name, h.warden ?? "—", String(h.students), String(h.beds), String(h.vacant), `${h.occupancy}%`]),
         [130, 130, 80, 60, 60, 70]
       );
@@ -583,9 +583,9 @@ router.get("/pdf", async (req, res) => {
 
     // ---- warden-wise detail ----
     if (!warden && data.wardenStats.length) {
-      drawSectionTitle(doc, "Warden-wise Statistics");
+      drawSectionTitle(doc, "Manager-wise Statistics");
       drawTable(doc,
-        ["Warden", "Hostel", "Students", "Fees collected", "Complaints", "Resolved", "Suggestions"],
+        ["Manager", "House", "Students", "Fees collected", "Complaints", "Resolved", "Suggestions"],
         data.wardenStats.map((w) => [
           w.name, w.hostel ?? "—", String(w.students), money(w.feeCollected),
           String(w.complaints), String(w.resolved), String(w.improvements),

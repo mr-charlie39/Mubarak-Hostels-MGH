@@ -82,7 +82,7 @@ export default function HostelsPage() {
       setModal({ open: false, editing: null });
       reload();
     } catch (e) {
-      setFormError((e as Error).message || "Could not save the hostel.");
+      setFormError((e as Error).message || "Could not save the house.");
     } finally {
       setSaving(false);
     }
@@ -103,7 +103,7 @@ export default function HostelsPage() {
       setDeleting(null);
       reload();
     } catch (e) {
-      setActionError((e as Error).message || "Could not remove the hostel.");
+      setActionError((e as Error).message || "Could not remove the house.");
       setDeleting(null);
     }
   };
@@ -116,7 +116,7 @@ export default function HostelsPage() {
   }, [visible]);
 
   const statItems = [
-    { label: "Hostels", value: totals.hostels, icon: "ri-building-2-line" },
+    { label: "Houses", value: totals.hostels, icon: "ri-building-2-line" },
     { label: "Rooms", value: totals.rooms, icon: "ri-door-open-line" },
     { label: "Beds", value: totals.beds, icon: "ri-hotel-bed-line" },
     { label: "Available", value: totals.available, icon: "ri-check-double-line" },
@@ -128,11 +128,11 @@ export default function HostelsPage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="font-heading text-xl font-bold text-foreground-950">
-              {isWarden ? "My Hostel" : "Hostel Management"}
+              {isWarden ? "My House" : "House Management"}
             </h2>
             <p className="text-sm text-foreground-600 mt-1">
               {isAdmin
-                ? "Create and manage hostel branches. Room and bed figures are derived live from the database."
+                ? "Create and manage house branches. Room and bed figures are derived live from the database."
                 : "Live overview of hostel occupancy from the database."}
             </p>
           </div>
@@ -182,7 +182,7 @@ export default function HostelsPage() {
             <i className="ri-building-2-line text-4xl text-foreground-300"></i>
             <p className="mt-3 text-sm text-foreground-500">
               {isWarden
-                ? "Your account is not assigned to a hostel yet."
+                ? "Your account is not assigned to a house yet."
                 : "No hostels have been created yet."}
             </p>
           </div>
@@ -244,7 +244,7 @@ export default function HostelsPage() {
 
                     <div className="mt-3 flex items-center gap-2 text-sm text-foreground-600">
                       <i className="ri-user-star-line"></i>
-                      <span>{warden ? warden.name : "No warden assigned"}</span>
+                      <span>{warden ? warden.name : "No manager assigned"}</span>
                     </div>
 
                     <div className="mt-4 grid grid-cols-3 gap-2 text-center">
@@ -313,8 +313,8 @@ export default function HostelsPage() {
 
         <ConfirmDialog
           open={Boolean(deleting)}
-          title="Delete hostel?"
-          message={`This will permanently remove ${deleting?.name ?? "this hostel"}. Existing rooms and students must be cleared first.`}
+          title="Delete house?"
+          message={`This will permanently remove ${deleting?.name ?? "this house"}. Existing rooms and students must be cleared first.`}
           onCancel={() => setDeleting(null)}
           onConfirm={handleDelete}
         />

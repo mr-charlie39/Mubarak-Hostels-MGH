@@ -84,10 +84,10 @@ export default function Dashboard() {
             value={String(activeCount)}
             icon="ri-group-line"
             tone="primary"
-            sub={isHostelAdmin ? "in your hostel" : "across all hostels"}
+            sub={isHostelAdmin ? "in your house" : "across all houses"}
           />
           <StatCard
-            label={isHostelAdmin ? "My Hostel Occupancy" : "Avg Occupancy"}
+            label={isHostelAdmin ? "My House Occupancy" : "Avg Occupancy"}
             value={`${occupancyPct}%`}
             icon="ri-door-open-line"
             tone="secondary"
@@ -116,7 +116,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2">
             <OccupancyChart
-              title={isHostelAdmin ? "My Hostel Occupancy" : "Occupancy by Hostel"}
+              title={isHostelAdmin ? "My House Occupancy" : "Occupancy by House"}
               data={occupancyData}
             />
           </div>

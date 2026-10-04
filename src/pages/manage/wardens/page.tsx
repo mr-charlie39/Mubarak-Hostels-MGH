@@ -35,7 +35,7 @@ export default function WardensPage() {
       const data = await listWardens();
       setWardens(data);
     } catch (e) {
-      setLoadError((e as Error).message || "Could not load warden accounts. Please try again.");
+      setLoadError((e as Error).message || "Could not load manager accounts. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -69,7 +69,7 @@ export default function WardensPage() {
           position: values.position.trim() || undefined,
           avatarUrl: values.avatarUrl.trim() || null,
         });
-        flash("Warden account created successfully.");
+        flash("Manager account created successfully.");
       } else if (editing) {
         await updateWarden({
           userId: editing.id,
@@ -80,7 +80,7 @@ export default function WardensPage() {
           hostelId: values.hostelId ? Number(values.hostelId) : null,
           avatarUrl: values.avatarUrl.trim() || null,
         });
-        flash("Warden account updated.");
+        flash("Manager account updated.");
       }
       setFormMode(null);
       setEditing(undefined);
@@ -159,7 +159,7 @@ export default function WardensPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="font-heading text-xl font-bold text-foreground-950">Hostel Admin Management</h2>
+          <h2 className="font-heading text-xl font-bold text-foreground-950">Manager Management</h2>
           <p className="text-sm text-foreground-600 mt-1">
             Manage hostel admin accounts, hostel assignments, photos and passwords.
           </p>
@@ -172,7 +172,7 @@ export default function WardensPage() {
           }}
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-primary-500 hover:bg-primary-600 text-background-50 text-sm font-semibold whitespace-nowrap cursor-pointer transition"
         >
-          <i className="ri-add-line"></i> Add Hostel Admin
+          <i className="ri-add-line"></i> Add Manager
         </button>
       </div>
 
@@ -199,7 +199,7 @@ export default function WardensPage() {
           </div>
         ) : wardens.length === 0 ? (
           <div className="py-12 px-6 text-center text-foreground-500 text-sm">
-            No hostel admin accounts yet. Add your first hostel admin above.
+            No manager accounts yet. Add your first manager above.
           </div>
         ) : (
           <ul className="divide-y divide-background-100">

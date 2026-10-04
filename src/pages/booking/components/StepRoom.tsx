@@ -25,7 +25,7 @@ export default function StepRoom({ hostels, hostelId, selectedRoom, onSelect, on
       </button>
 
       <h2 className="font-heading text-xl md:text-2xl font-bold text-foreground-950">
-        Available rooms at {hostel?.name ?? `Hostel #${hostelId}`}
+        Available rooms at {hostel?.name ?? `House #${hostelId}`}
       </h2>
       <p className="mt-2 text-sm text-foreground-600">
         Only rooms with at least one free bed are shown. Full rooms are disabled.

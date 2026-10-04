@@ -211,7 +211,7 @@ export default function StepDetails({ form, onChange, onNext, onBack }: Props) {
             maxLength={500}
             value={form.message}
             onChange={(v) => onChange("message", v)}
-            placeholder="Any special request or note for the hostel team…"
+            placeholder="Any special request or note for the house team…"
             hint="Maximum 500 characters."
           />
         </div>

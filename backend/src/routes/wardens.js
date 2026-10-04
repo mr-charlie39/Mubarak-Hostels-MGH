@@ -92,7 +92,7 @@ router.post("/manage", async (req, res) => {
           hostelId,
           phone,
           avatarUrl,
-          position || (role === "superintendent" ? "Superintendent" : "Warden"),
+          position || (role === "superintendent" ? "Superintendent" : "Manager"),
         ]
       );
       return res.status(201).json({ ok: true, userId: String(result.insertId) });

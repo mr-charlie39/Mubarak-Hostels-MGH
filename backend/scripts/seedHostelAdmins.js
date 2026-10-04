@@ -12,21 +12,21 @@ const HOSTEL_ADMINS = [
     email: "yousafmehsood2121@gmail.com",
     password: "jinnah12",
     hostelId: 1,
-    position: "Warden, Jinnah Boys House",
+    position: "Manager, Jinnah House",
   },
   {
     name: "Abdullah",
     email: "malikabdullahmalikaz@gmail.com",
     password: "sama123",
     hostelId: 2,
-    position: "Warden, Sama Boys House",
+    position: "Manager, SAMA House",
   },
   {
     name: "Bilah Ahmed",
     email: "bilalsudais74@gmail.com",
     password: "qadeer1234",
     hostelId: 3,
-    position: "Warden, Abdul Qadeer Boys House",
+    position: "Manager, Dr. Abdul Qadeer Khan House",
   },
 ];
 

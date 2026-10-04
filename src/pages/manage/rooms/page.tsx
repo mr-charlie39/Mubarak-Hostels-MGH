@@ -161,7 +161,7 @@ export default function Rooms() {
             )}
             <p className="text-sm text-foreground-500">
               {isWarden
-                ? "Your hostel's room & bed allocation"
+                ? "Your house's room & bed allocation"
                 : "Room grid with live bed allocation from the database"}
             </p>
           </div>
@@ -248,7 +248,7 @@ export default function Rooms() {
           <div className="bg-background-50 border border-background-200 rounded-lg py-16 text-center">
             <i className="ri-door-open-line text-4xl text-foreground-300"></i>
             <p className="mt-3 text-sm text-foreground-500">
-              No rooms have been created for this hostel yet.
+              No rooms have been created for this house yet.
             </p>
           </div>
         ) : (

@@ -6,7 +6,7 @@ dotenv.config();
 
 // ---------------------------------------------------------------------------
 // One-time reset to a clean, production-ready state:
-//   * keep only Jinnah, Sama and Abdul Qadeer hostels
+//   * keep only Jinnah, SAMA and Dr. Abdul Qadeer Khan houses
 //   * recreate their rooms + beds, all empty and available for booking
 //   * remove every student, fee, attendance, visitor, booking, complaint,
 //     notice, allocation, maintenance, audit-log and notification record
@@ -18,9 +18,9 @@ dotenv.config();
 const KEEP_HOSTEL_IDS = [1, 2, 3];
 
 const HOSTEL_NAMES = {
-  1: "Jinnah Hostel",
-  2: "Sama Hostel",
-  3: "Abdul Qadeer Hostel",
+  1: "Jinnah House",
+  2: "SAMA House",
+  3: "Dr. Abdul Qadeer Khan House",
 };
 
 const SUPER_ADMINS = [
@@ -45,7 +45,7 @@ const WARDENS = [
     password: "jinnah12",
     phone: "03419715017",
     hostelId: 1,
-    position: "Warden, Jinnah Boys House",
+    position: "Manager, Jinnah House",
     avatarUrl: "https://static.readdy.ai/image/773d73dcd4bfe3b3ab546a821d990052/8f6a18793fdfdc4a44c7458f6edc225e.png",
   },
   {
@@ -54,7 +54,7 @@ const WARDENS = [
     password: "sama123",
     phone: "03105948138",
     hostelId: 2,
-    position: "Warden, Sama Boys House",
+    position: "Manager, SAMA House",
     avatarUrl: "https://static.readdy.ai/image/773d73dcd4bfe3b3ab546a821d990052/975047ec2596c0f071aabe1219285608.png",
   },
   {
@@ -63,7 +63,7 @@ const WARDENS = [
     password: "qadeer1234",
     phone: "03045889984",
     hostelId: 3,
-    position: "Warden, Abdul Qadeer Boys House",
+    position: "Manager, Dr. Abdul Qadeer Khan House",
     avatarUrl: "https://static.readdy.ai/image/773d73dcd4bfe3b3ab546a821d990052/ac895ff6c5b9f7bc513e57b688cb7400.jpeg",
   },
 ];

@@ -40,7 +40,7 @@ export default function StepReview({
   const rooms = useHostelRooms(hostelId);
   const room = rooms.find((r) => r.label === roomLabel);
 
-  const hostelName = hostel?.name ?? `Hostel #${hostelId}`;
+  const hostelName = hostel?.name ?? `House #${hostelId}`;
 
   return (
     <div>
@@ -48,7 +48,7 @@ export default function StepReview({
         Review your booking
       </h2>
       <p className="mt-2 text-sm text-foreground-600">
-        Confirm the details below before submitting. Your booking will be reviewed by the hostel
+        Confirm the details below before submitting. Your booking will be reviewed by the house
         team.
       </p>
 
@@ -56,7 +56,7 @@ export default function StepReview({
         {/* Selection */}
         <div className="bg-background-50 border border-background-200 rounded-2xl p-6">
           <h3 className="font-heading text-base font-bold text-foreground-950 mb-2">Selection</h3>
-          <Row label="Selected Hostel" value={hostelName} />
+          <Row label="Selected House" value={hostelName} />
           <Row label="Selected Room" value={`${roomLabel} · Floor ${room?.floor} · Block ${room?.block}`} />
           <Row label="Selected Bed" value={`Bed ${bedNumber}`} />
           <Row label="Joining Date" value={form.joiningDate} />

@@ -15,7 +15,7 @@ export default function Hostels() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <span className="text-xs tracking-[0.3em] uppercase text-primary-600 font-semibold">
-              Our Hostels
+              Our Houses
             </span>
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-foreground-950 mt-3">
               {loading || hostels.length === 0
@@ -32,7 +32,7 @@ export default function Hostels() {
         {loading ? (
           <div className="mt-14 flex items-center justify-center gap-2 py-16 text-foreground-500">
             <i className="ri-loader-4-line animate-spin text-2xl"></i>
-            <span className="text-sm">Loading hostels…</span>
+            <span className="text-sm">Loading houses…</span>
           </div>
         ) : error ? (
           <div className="mt-14 py-16 text-center">
@@ -46,7 +46,7 @@ export default function Hostels() {
           </div>
         ) : hostels.length === 0 ? (
           <div className="mt-14 py-16 text-center text-foreground-500 text-sm">
-            No hostels available yet.
+            No houses available yet.
           </div>
         ) : (
           <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-product-shop>

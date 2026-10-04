@@ -326,13 +326,13 @@ export default function Contact() {
         <div className="mx-auto max-w-7xl">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs tracking-[0.3em] uppercase text-primary-600 font-semibold">
-              Reach a Specific Hostel
+              Reach a Specific House
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground-950 mt-3">
               Contact any of our hostels directly
             </h2>
             <p className="mt-3 text-foreground-600">
-              Each hostel has its own warden and contact line. Choose the one closest to your
+              Each house has its own manager and contact line. Choose the one closest to your
               university.
             </p>
           </div>
@@ -366,7 +366,7 @@ export default function Contact() {
                   </div>
                   <div className="flex gap-2">
                     <i className="ri-user-line text-primary-600 mt-0.5"></i>
-                    Warden: <span className="font-semibold text-foreground-950">{loc.warden}</span>
+                    Manager: <span className="font-semibold text-foreground-950">{loc.warden}</span>
                   </div>
                 </div>
                 <a

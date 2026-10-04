@@ -91,8 +91,8 @@ export default function Bookings() {
         <div>
           <p className="text-sm text-foreground-500">
             {isWarden
-              ? "Room & bed booking requests for your hostel"
-              : "All room & bed booking requests across every hostel"}
+              ? "Room & bed booking requests for your house"
+              : "All room & bed booking requests across every house"}
           </p>
         </div>
         {pendingCount > 0 && (
@@ -130,7 +130,7 @@ export default function Bookings() {
             }
             className="px-3 py-2.5 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-400"
           >
-            <option value="all">All Hostels</option>
+            <option value="all">All Houses</option>
             {hostels.map((h) => (
               <option key={h.id} value={h.id}>
                 {h.name}
@@ -145,7 +145,7 @@ export default function Bookings() {
             onChange={(e) => setWardenFilter(e.target.value)}
             className="px-3 py-2.5 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-400"
           >
-            <option value="all">All Wardens</option>
+            <option value="all">All Managers</option>
             {wardens.map((w) => (
               <option key={w.id} value={w.id}>
                 {w.name}
@@ -209,7 +209,7 @@ export default function Bookings() {
                     Applicant
                   </th>
                   <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-foreground-500 whitespace-nowrap">
-                    Hostel / Warden
+                    House / Manager
                   </th>
                   <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-foreground-500 whitespace-nowrap">
                     Room / Bed
@@ -249,7 +249,7 @@ export default function Bookings() {
                       <td className="px-4 py-3 text-sm text-foreground-600 whitespace-nowrap">
                         <div>{b.hostelName}</div>
                         <div className="text-[11px] text-foreground-400">
-                          {wardenNameFor(b) ? `Warden: ${wardenNameFor(b)}` : "No warden"}
+                          {wardenNameFor(b) ? `Manager: ${wardenNameFor(b)}` : "No manager"}
                         </div>
                       </td>
                       <td className="px-4 py-3 text-sm text-foreground-600 whitespace-nowrap">

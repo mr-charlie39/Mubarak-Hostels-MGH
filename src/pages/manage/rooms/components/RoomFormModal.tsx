@@ -71,7 +71,7 @@ export default function RoomFormModal({ open, initial, onClose, onSave }: Props)
               {initial ? "Edit Room" : "Add Room"}
             </h2>
             <p className="text-xs text-foreground-500">
-              {initial ? "Update room details & capacity" : "Create a new room for this hostel"}
+              {initial ? "Update room details & capacity" : "Create a new room for this house"}
             </p>
           </div>
           <button

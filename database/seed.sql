@@ -3,7 +3,7 @@
 -- Run this AFTER schema.sql.
 --
 -- This is a clean, production-ready starting point:
---   * Three hostels only (Jinnah, Sama, Abdul Qadeer)
+--   * Three hostels only (Jinnah, SAMA, Dr. Abdul Qadeer Khan)
 --   * Rooms and beds created but EMPTY and fully available for booking
 --   * No demo students, fees, attendance, visitors, complaints, notices or
 --     audit logs — the project starts fresh.
@@ -19,9 +19,9 @@ USE mubarak_hostels;
 -- hostels
 -- ---------------------------------------------------------------------------
 INSERT INTO hostels (id, name, gender, location) VALUES
-  (1, 'Jinnah Hostel', 'boys', '6th Road, Rawalpindi'),
-  (2, 'Sama Hostel', 'boys', '6th Road, Rawalpindi'),
-  (3, 'Abdul Qadeer Hostel', 'boys', '6th Road, Rawalpindi');
+  (1, 'Jinnah House', 'boys', '6th Road, Rawalpindi'),
+  (2, 'SAMA House', 'boys', '6th Road, Rawalpindi'),
+  (3, 'Dr. Abdul Qadeer Khan House', 'boys', '6th Road, Rawalpindi');
 
 UPDATE hostels SET
   code = 'JH-1',  status = 'active', rooms = 50, beds = 173,
@@ -46,6 +46,18 @@ UPDATE hostels SET
 WHERE id = 3;
 
 -- ---------------------------------------------------------------------------
+-- room_rates — monthly rate per student, per house and room capacity
+-- ---------------------------------------------------------------------------
+INSERT INTO room_rates (hostel_id, capacity, rate) VALUES
+  -- Jinnah House
+  (1, 2, 21000), (1, 3, 19000), (1, 4, 18000), (1, 5, 17000),
+  -- SAMA House
+  (2, 2, 25000), (2, 3, 24000), (2, 4, 23000), (2, 5, 21000),
+  -- Dr. Abdul Qadeer Khan House
+  (3, 2, 21000), (3, 3, 19000), (3, 4, 18000), (3, 5, 17000)
+ON DUPLICATE KEY UPDATE rate = VALUES(rate);
+
+-- ---------------------------------------------------------------------------
 -- buildings & blocks (one building per hostel spanning the 5 catalog floors)
 -- ---------------------------------------------------------------------------
 INSERT INTO buildings (hostel_id, name, description, status) VALUES
@@ -66,9 +78,9 @@ INSERT INTO blocks (hostel_id, building_id, name, status) VALUES
 --
 -- Super Admins -> abdulsattar1717asm@gmail.com  (role 'admin', hostel_id NULL)
 --                 mubarakgroupofhostels@gmail.com        (role 'admin', hostel_id NULL)
--- Hostel Admin -> Jinnah Hostel       : yousafmehsood2121@gmail.com
--- Hostel Admin -> Sama Hostel         : malikabdullahmalikaz@gmail.com
--- Hostel Admin -> Abdul Qadeer Hostel : bilalsudais74@gmail.com
+-- Hostel Admin -> Jinnah House       : yousafmehsood2121@gmail.com
+-- Hostel Admin -> SAMA House         : malikabdullahmalikaz@gmail.com
+-- Hostel Admin -> Dr. Abdul Qadeer Khan House : bilalsudais74@gmail.com
 -- ---------------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------------

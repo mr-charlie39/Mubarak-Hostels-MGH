@@ -8,7 +8,7 @@
 const ROLE_LABELS: Record<string, string> = {
   admin: "Super Admin",
   superintendent: "Superintendent",
-  warden: "Hostel Admin",
+  warden: "Manager",
   student: "Student",
 };
 

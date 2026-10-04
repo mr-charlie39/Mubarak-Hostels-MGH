@@ -28,12 +28,12 @@ export default function HostelContact() {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center px-4 text-center">
         <i className="ri-error-warning-line text-5xl text-accent-500"></i>
-        <h1 className="font-heading text-2xl font-bold text-foreground-950 mt-4">Hostel not found</h1>
+        <h1 className="font-heading text-2xl font-bold text-foreground-950 mt-4">House not found</h1>
         <Link
           to="/hostels"
           className="mt-6 px-6 py-3 rounded-md bg-primary-500 text-background-50 font-semibold cursor-pointer"
         >
-          View All Hostels
+          View All Houses
         </Link>
       </div>
     );
@@ -165,11 +165,11 @@ export default function HostelContact() {
             </div>
 
             <div className="bg-background-100 border border-background-200 rounded-2xl p-6">
-              <h3 className="font-heading text-lg font-bold text-foreground-950">Warden</h3>
+              <h3 className="font-heading text-lg font-bold text-foreground-950">Manager</h3>
               <div className="mt-4">
                 <WardenCard
                   name={wardenForHostel?.name ?? loc.warden}
-                  position={wardenForHostel?.position ?? "Warden"}
+                  position={wardenForHostel?.position ?? "Manager"}
                   hostelName={hostel.name}
                   phone={wardenForHostel?.phone ?? null}
                   email={wardenForHostel?.email ?? null}

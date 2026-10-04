@@ -77,10 +77,10 @@ export default function HostelFormModal({ open, hostel, saving, error, onSubmit,
         <div className="sticky top-0 bg-background-50 border-b border-background-200 px-6 py-4 flex items-center justify-between">
           <div>
             <h2 className="font-heading text-lg font-bold text-foreground-950">
-              {hostel ? "Edit Hostel" : "Add Hostel"}
+              {hostel ? "Edit House" : "Add House"}
             </h2>
             <p className="text-xs text-foreground-500">
-              {hostel ? "Update hostel details" : "Register a new hostel branch"}
+              {hostel ? "Update house details" : "Register a new house branch"}
             </p>
           </div>
           <button
@@ -96,13 +96,13 @@ export default function HostelFormModal({ open, hostel, saving, error, onSubmit,
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-foreground-800 mb-1.5">
-                Hostel Name <span className="text-accent-600">*</span>
+                House Name <span className="text-accent-600">*</span>
               </label>
               <input
                 className={inputClass}
                 value={values.name}
                 onChange={(e) => set({ name: e.target.value })}
-                placeholder="e.g. Jinnah Boys House"
+                placeholder="e.g. Jinnah House"
               />
             </div>
             <div>
@@ -178,7 +178,7 @@ export default function HostelFormModal({ open, hostel, saving, error, onSubmit,
                 className={inputClass}
                 value={values.email}
                 onChange={(e) => set({ email: e.target.value })}
-                placeholder="hostel@example.pk"
+                placeholder="house@example.pk"
               />
             </div>
           </div>
@@ -191,7 +191,7 @@ export default function HostelFormModal({ open, hostel, saving, error, onSubmit,
               maxLength={500}
               value={values.description}
               onChange={(e) => set({ description: e.target.value })}
-              placeholder="Short description of the hostel"
+              placeholder="Short description of the house"
             />
           </div>
 
@@ -209,7 +209,7 @@ export default function HostelFormModal({ open, hostel, saving, error, onSubmit,
 
           <div>
             <ImageUpload
-              label="Hostel Photo"
+              label="House Photo"
               value={values.imageUrl}
               onChange={(url) => set({ imageUrl: url ?? "" })}
             />
@@ -236,7 +236,7 @@ export default function HostelFormModal({ open, hostel, saving, error, onSubmit,
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-primary-500 hover:bg-primary-600 text-background-50 text-sm font-semibold whitespace-nowrap cursor-pointer transition disabled:opacity-60"
             >
               {saving && <i className="ri-loader-4-line animate-spin"></i>}
-              {hostel ? "Save Changes" : "Add Hostel"}
+              {hostel ? "Save Changes" : "Add House"}
             </button>
           </div>
         </form>

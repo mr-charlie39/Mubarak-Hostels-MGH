@@ -222,6 +222,35 @@ async function main() {
     LEFT JOIN hostels h ON h.id = u.hostel_id
     WHERE u.role = 'warden'`);
 
+  // ---- room_rates: monthly rate per student, per house and capacity --------
+  // SAMA House is the premium branch; Jinnah House and Dr. Abdul Qadeer Khan
+  // House share the standard tier.
+  await conn.query(`CREATE TABLE IF NOT EXISTS room_rates (
+      hostel_id  INT UNSIGNED    NOT NULL,
+      capacity   TINYINT UNSIGNED NOT NULL,
+      rate       INT UNSIGNED    NOT NULL,
+      updated_at TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      PRIMARY KEY (hostel_id, capacity),
+      KEY idx_room_rates_hostel (hostel_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`);
+
+  const DEFAULT_RATES = [
+    // Jinnah House
+    [1, 2, 21000], [1, 3, 19000], [1, 4, 18000], [1, 5, 17000],
+    // SAMA House
+    [2, 2, 25000], [2, 3, 24000], [2, 4, 23000], [2, 5, 21000],
+    // Dr. Abdul Qadeer Khan House
+    [3, 2, 21000], [3, 3, 19000], [3, 4, 18000], [3, 5, 17000],
+  ];
+  for (const [hostelId, capacity, rate] of DEFAULT_RATES) {
+    await conn.query(
+      `INSERT INTO room_rates (hostel_id, capacity, rate) VALUES (?, ?, ?)
+       ON DUPLICATE KEY UPDATE rate = VALUES(rate)`,
+      [hostelId, capacity, rate]
+    );
+  }
+  console.log("  room_rates ready");
+
   // ---- seed new tables when empty -----------------------------------------
   const catalogExists = await tableExists(conn, "rooms");
   const hostelsCount = catalogExists

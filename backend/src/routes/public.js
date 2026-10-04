@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { pool } from "../db.js";
+import { getHouseRates, getRoomRate } from "../rates.js";
 
 // Public endpoints — no authentication required (used by the public website).
 const router = Router();
@@ -39,6 +40,21 @@ router.get("/rooms", async (_req, res) => {
         floor: r.floor,
         type: r.room_type,
         capacity: r.capacity,
+      }))
+    );
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/public/rates/:hostelId — monthly room rates for one house, keyed by capacity
+router.get("/rates/:hostelId", async (req, res) => {
+  try {
+    const rates = await getHouseRates(req.params.hostelId);
+    res.json(
+      Object.entries(rates).map(([capacity, rate]) => ({
+        capacity: Number(capacity),
+        rate: Number(rate),
       }))
     );
   } catch (err) {
@@ -106,7 +122,7 @@ router.get("/wardens", async (_req, res) => {
         phone: r.phone,
         hostelId: r.hostel_id != null ? Number(r.hostel_id) : null,
         avatarUrl: r.avatar_url,
-        position: r.position ?? "Warden",
+        position: r.position ?? "Manager",
       }))
     );
   } catch (err) {
@@ -169,7 +185,7 @@ router.post("/bookings", async (req, res) => {
 
     // Prevent overbooking: the target bed must still be free.
     const [roomRows] = await pool.query(
-      "SELECT id FROM hostel_rooms WHERE hostel_id = ? AND room_number = ? LIMIT 1",
+      "SELECT id, capacity FROM hostel_rooms WHERE hostel_id = ? AND room_number = ? LIMIT 1",
       [hostel_id, room_label]
     );
     if (!roomRows.length) {
@@ -208,11 +224,12 @@ router.post("/bookings", async (req, res) => {
 
     const id = await nextBookingId();
     const now = new Date().toISOString();
+    const feeAmount = await getRoomRate(hostel_id, roomRows[0].capacity);
     await pool.query(
       `INSERT INTO bookings
          (id, hostel_id, hostel_name, room_label, block, floor, bed_number, status,
           applicant, warden_id, fee_amount, tracking)
-       VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, 18000, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?)`,
       [
         id,
         hostel_id,
@@ -223,6 +240,7 @@ router.post("/bookings", async (req, res) => {
         Number(bed_number ?? 1),
         JSON.stringify(applicant ?? {}),
         wardens[0] ? Number(wardens[0].id) : null,
+        feeAmount,
         JSON.stringify([{ status: "pending", at: now, by: null }]),
       ]
     );

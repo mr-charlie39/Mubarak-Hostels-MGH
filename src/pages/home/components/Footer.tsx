@@ -64,12 +64,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading text-background-50 font-bold mb-4">Our Hostels</h4>
+            <h4 className="font-heading text-background-50 font-bold mb-4">Our Houses</h4>
             <ul className="space-y-2 text-sm">
               {[
-                "Jinnah Hostel",
-                "Sama Hostel",
-                "Abdul Qadeer Hostel",
+                "Jinnah House",
+                "SAMA House",
+                "Dr. Abdul Qadeer Khan House",
               ].map((l) => (
                 <li key={l}>
                   <a href="#hostels" className="hover:text-accent-400 cursor-pointer">
@@ -114,7 +114,7 @@ export default function Footer() {
           <div className="flex gap-5">
             <a href="#" className="hover:text-accent-400 cursor-pointer">Privacy</a>
             <a href="#" className="hover:text-accent-400 cursor-pointer">Terms</a>
-            <a href="#" className="hover:text-accent-400 cursor-pointer">Hostel Rules</a>
+            <a href="#" className="hover:text-accent-400 cursor-pointer">House Rules</a>
           </div>
         </div>
       </footer>

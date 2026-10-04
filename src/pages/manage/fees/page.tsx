@@ -253,7 +253,7 @@ export default function Fees() {
                 onChange={(e) => setHostelFilter(e.target.value)}
                 className="px-3 py-2 rounded-md border border-background-300 bg-background-50 text-foreground-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 cursor-pointer"
               >
-                <option value="all">All Hostels</option>
+                <option value="all">All Houses</option>
                 {hostels.map((h) => (
                   <option key={h.id} value={String(h.id)}>
                     {h.name}
@@ -277,7 +277,7 @@ export default function Fees() {
                 <thead>
                   <tr className="bg-background-100 text-left text-xs uppercase tracking-wide text-foreground-500">
                     <th className="px-4 py-3 font-semibold">Resident</th>
-                    <th className="px-4 py-3 font-semibold">Hostel</th>
+                    <th className="px-4 py-3 font-semibold">House</th>
                     <th className="px-4 py-3 font-semibold">Room / Bed</th>
                     <th className="px-4 py-3 font-semibold">Fee</th>
                     <th className="px-4 py-3 font-semibold">Fee Status</th>

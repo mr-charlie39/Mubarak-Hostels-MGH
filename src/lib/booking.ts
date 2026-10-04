@@ -359,7 +359,7 @@ function buildRoomsFromData(
       capacity: c.capacity,
       beds,
       availableCount: beds.filter((bd) => bd.status === "available").length,
-      image: getRoomImage(`${hostelId}-${c.label}`),
+      image: getRoomImage(`${hostelId}-${c.label}`, c.capacity),
     });
   }
   return rooms;
@@ -481,7 +481,7 @@ export async function loadHostelRooms(hostelId: number): Promise<RoomBeds[]> {
       capacity: r.capacity,
       beds: r.beds,
       availableCount: r.availableCount,
-      image: getRoomImage(`${hostelId}-${r.label}`),
+      image: getRoomImage(`${hostelId}-${r.label}`, r.capacity),
     }));
   }
   const rooms = await fetchBookingRooms(hostelId);

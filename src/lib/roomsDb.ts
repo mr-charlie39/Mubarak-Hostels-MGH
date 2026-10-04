@@ -439,7 +439,7 @@ export async function fetchBookingRooms(hostelId: number): Promise<BookingRoom[]
     const rows = await api.get<
       Array<{ label: string; block: string; floor: number; capacity: number; beds: BookingBed[]; availableCount: number }>
     >(`/rooms/booking-rooms?hostelId=${hostelId}`);
-    return rows.map((r) => ({ ...r, image: getRoomImage(`${hostelId}-${r.label}`) }));
+    return rows.map((r) => ({ ...r, image: getRoomImage(`${hostelId}-${r.label}`, r.capacity) }));
   }
   const { data: rooms, error: rErr } = await supabase
     .from("rooms")
@@ -511,7 +511,7 @@ export async function fetchBookingRooms(hostelId: number): Promise<BookingRoom[]
         capacity: r.capacity,
         beds: mapped,
         availableCount: mapped.filter((b) => b.status === "available").length,
-        image: getRoomImage(`${hostelId}-${r.room_number}`),
+        image: getRoomImage(`${hostelId}-${r.room_number}`, r.capacity),
       };
     });
 }
