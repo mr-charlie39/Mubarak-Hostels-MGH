@@ -201,7 +201,7 @@ export default function HostelsPage() {
                       <img
                         src={h.image}
                         alt={h.name}
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover object-bottom"
                       />
                     ) : (
                       <div className="w-full h-full bg-background-100 flex items-center justify-center">

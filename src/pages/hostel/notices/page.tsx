@@ -13,7 +13,7 @@ export default function HostelNotices() {
           <img
             src={hostel.image}
             alt={hostel.name}
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover object-bottom"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-foreground-950/60 via-foreground-950/40 to-foreground-950/70"></div>

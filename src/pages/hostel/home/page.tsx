@@ -77,7 +77,7 @@ export default function HostelHome() {
         <img
           src={hostel.image}
           alt={hostel.name}
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover object-bottom"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground-950/60 via-foreground-950/30 to-foreground-950/80"></div>
         <div className="absolute inset-0 flex items-center">
@@ -182,7 +182,7 @@ export default function HostelHome() {
                 <img
                   src={img}
                   alt={`${hostel.name} interior ${i + 1}`}
-                  className="w-full h-56 md:h-64 object-cover object-top"
+                  className="w-full h-56 md:h-64 object-cover object-bottom"
                 />
               </div>
             ))}

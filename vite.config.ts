@@ -81,6 +81,8 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    // Fail loudly instead of silently moving to 3001 when 3000 is taken.
+    strictPort: true,
     host: "0.0.0.0",
   },
 });

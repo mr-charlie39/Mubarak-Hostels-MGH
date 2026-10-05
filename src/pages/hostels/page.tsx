@@ -14,7 +14,7 @@ function HostelCard({ h }: { h: Hostel }) {
         <img
           src={h.image}
           alt={h.name}
-          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover object-bottom group-hover:scale-105 transition-transform duration-700"
         />
         <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-background-50/95 backdrop-blur text-xs font-semibold text-primary-700">
           <i className="ri-map-pin-line mr-1"></i>

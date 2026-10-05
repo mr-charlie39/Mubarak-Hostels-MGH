@@ -157,7 +157,7 @@ export default function RoomGrid({ hostelId }: { hostelId: number }) {
                           src={getRoomImage(`${hostelId}-${room.roomNumber}`, room.capacity)}
                           alt={`Room ${room.roomNumber}`}
                           title={`Room ${room.roomNumber} — ${meta.label}`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-bottom"
                         />
                         <span
                           className={`absolute top-2 right-2 px-2 py-0.5 rounded-full text-[9px] font-bold whitespace-nowrap ${meta.badge}`}

@@ -63,7 +63,7 @@ export default function StepRoom({ hostels, hostelId, selectedRoom, onSelect, on
                   src={room.image}
                   alt={`Room ${room.label}`}
                   title={`Room ${room.label}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-bottom"
                 />
                 <span
                   className={`absolute top-2 right-2 px-2.5 py-1 rounded-full text-[10px] font-bold whitespace-nowrap ${

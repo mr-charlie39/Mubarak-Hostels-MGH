@@ -58,7 +58,7 @@ export default function Rooms() {
                 <img
                   src={r.image}
                   alt={r.type}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-bottom group-hover:scale-105 transition-transform duration-700"
                 />
                 {i === 0 && (
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-accent-500 text-foreground-950 text-[10px] font-bold uppercase tracking-widest">

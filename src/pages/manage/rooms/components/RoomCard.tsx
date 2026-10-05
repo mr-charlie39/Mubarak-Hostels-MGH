@@ -82,7 +82,7 @@ export default function RoomCard({
             src={image}
             alt={`Room ${room.number}`}
             title={`Room ${room.number}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-bottom"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-foreground-300">

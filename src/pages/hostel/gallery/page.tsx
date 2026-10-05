@@ -125,7 +125,7 @@ export default function HostelGallery() {
                   src={img}
                   alt={labelFor(i) ? `${hostel.name} — ${labelFor(i)}` : `${hostel.name} gallery image ${i + 1}`}
                   loading="lazy"
-                  className="w-full h-64 object-cover object-top group-hover:scale-105 transition duration-500"
+                  className="w-full h-64 object-cover object-bottom group-hover:scale-105 transition duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/60 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
                 {labelFor(i) && (
