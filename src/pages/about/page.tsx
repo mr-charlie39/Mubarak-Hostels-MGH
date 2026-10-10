@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SiteNavbar from "@/components/feature/SiteNavbar";
 import SiteFooter from "@/components/feature/SiteFooter";
 import WhatsAppFab from "@/pages/home/components/WhatsAppFab";
@@ -5,7 +6,7 @@ import TeamSection from "@/components/feature/TeamSection";
 import { ceo } from "@/mocks/team";
 import { whatsappLink } from "@/lib/siteConfig";
 import { useWardens } from "@/hooks/useWardens";
-import { useHostels } from "@/hooks/useHostels";
+import { useHostelsFull } from "@/hooks/useHostelsFull";
 
 const values = [
   {
@@ -30,17 +31,9 @@ const values = [
   },
 ];
 
-const milestones = [
-  { year: "2012", text: "Founded with our first hostel in D Block, Satellite Town, Rawalpindi, hosting 50 students." },
-  { year: "2015", text: "Expanded to three hostels with dedicated managers and 24/7 security." },
-  { year: "2019", text: "Introduced premium room categories, mess services and fiber Wi-Fi." },
-  { year: "2022", text: "Grew to a network of hostels serving hundreds of students across Rawalpindi." },
-  { year: "2026", text: "Launched our digital platform with online admissions and management." },
-];
-
 export default function About() {
   const { wardens } = useWardens();
-  const { hostels } = useHostels();
+  const { hostels } = useHostelsFull();
 
   return (
     <div className="min-h-screen bg-background-50">
@@ -286,34 +279,97 @@ export default function About() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-24 px-4 md:px-8">
-        <div className="mx-auto max-w-4xl">
-          <div className="text-center">
+      {/* Our Houses */}
+      <section className="py-24 px-4 md:px-8 bg-background-100">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs tracking-[0.3em] uppercase text-primary-600 font-semibold">
-              Our Journey
+              Our Houses
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground-950 mt-3">
-              How we got here
+              Three residences, one standard of care.
             </h2>
+            <p className="mt-4 text-foreground-600">
+              Every Mubarak house runs to the same playbook — vetted on-site staff, 24/7 security, a
+              hygienic in-house kitchen and a resident manager who knows each student by name.
+            </p>
           </div>
-          <div className="mt-14 relative">
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-background-300"></div>
-            {milestones.map((m, i) => (
-              <div key={m.year} className="relative flex gap-6 pb-10 last:pb-0 pl-16">
-                <div
-                  className={`absolute left-0 w-12 h-12 rounded-full flex items-center justify-center ${
-                    i === milestones.length - 1 ? "bg-accent-500" : "bg-primary-500"
-                  }`}
-                >
-                  <span className="text-background-50 font-semibold text-sm">{m.year.slice(2)}</span>
-                </div>
-                <div className="bg-background-50 border border-background-200 rounded-xl p-5 flex-1">
-                  <div className="font-heading text-lg font-bold text-foreground-950">{m.year}</div>
-                  <p className="mt-1 text-foreground-600 text-sm leading-relaxed">{m.text}</p>
-                </div>
+
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {hostels.length === 0 ? (
+              <div className="sm:col-span-2 lg:col-span-3 text-center py-10 text-foreground-500 text-sm">
+                <i className="ri-loader-4-line animate-spin"></i> Loading our houses…
               </div>
-            ))}
+            ) : (
+              hostels.map((h) => {
+                const manager = wardens.find((w) => w.hostelId === h.id);
+                return (
+                  <Link
+                    key={h.id}
+                    to={`/hostel/${h.id}`}
+                    className="group bg-background-50 border border-background-200 rounded-2xl overflow-hidden hover:border-primary-300 transition flex flex-col"
+                  >
+                    <div className="relative h-52 overflow-hidden">
+                      <img
+                        src={h.image ?? ""}
+                        alt={h.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-bottom group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-background-50/95 backdrop-blur text-xs font-semibold text-primary-700">
+                        <i className="ri-map-pin-line mr-1"></i>
+                        {h.location ?? "Rawalpindi"}
+                      </span>
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
+                      <h3 className="font-heading text-xl font-bold text-foreground-950 group-hover:text-primary-600 transition">
+                        {h.name}
+                      </h3>
+
+                      <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+                        <div className="rounded-md bg-background-100 py-2">
+                          <div className="font-heading text-lg font-bold text-primary-600">{h.rooms}</div>
+                          <div className="text-[10px] uppercase tracking-widest text-foreground-500">Rooms</div>
+                        </div>
+                        <div className="rounded-md bg-background-100 py-2">
+                          <div className="font-heading text-lg font-bold text-primary-600">{h.beds}</div>
+                          <div className="text-[10px] uppercase tracking-widest text-foreground-500">Beds</div>
+                        </div>
+                        <div className="rounded-md bg-background-100 py-2">
+                          <div className="font-heading text-lg font-bold text-primary-600">{h.available}</div>
+                          <div className="text-[10px] uppercase tracking-widest text-foreground-500">Free</div>
+                        </div>
+                      </div>
+
+                      {manager && (
+                        <div className="mt-5 flex items-center gap-3 rounded-xl bg-background-100 p-3">
+                          <div className="w-9 h-9 rounded-full overflow-hidden bg-primary-500 text-background-50 flex items-center justify-center font-semibold text-sm shrink-0">
+                            {manager.avatarUrl ? (
+                              <img src={manager.avatarUrl} alt={manager.name} className="w-full h-full object-cover object-top" />
+                            ) : (
+                              manager.name.charAt(0).toUpperCase()
+                            )}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-[10px] uppercase tracking-widest text-foreground-500">
+                              Resident manager
+                            </div>
+                            <div className="text-sm font-semibold text-foreground-900 truncate">
+                              {manager.name}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      <span className="mt-auto pt-5 border-t border-background-200 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600">
+                        Explore {h.name}
+                        <i className="ri-arrow-right-line"></i>
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })
+            )}
           </div>
         </div>
       </section>
