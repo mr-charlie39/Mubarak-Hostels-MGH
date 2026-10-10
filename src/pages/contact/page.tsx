@@ -329,7 +329,7 @@ export default function Contact() {
               Reach a Specific House
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground-950 mt-3">
-              Contact any of our hostels directly
+              Contact any of our houses directly
             </h2>
             <p className="mt-3 text-foreground-600">
               Each house has its own manager and contact line. Choose the one closest to your
@@ -345,7 +345,7 @@ export default function Contact() {
               >
                 <div className="flex items-center justify-between">
                   <h3 className="font-heading text-lg font-bold text-foreground-950">
-                    Hostel 0{loc.id}
+                    {loc.name}
                   </h3>
                   <Link
                     to={`/hostel/${loc.id}/contact`}
@@ -361,12 +361,17 @@ export default function Contact() {
                     {loc.address}
                   </div>
                   <div className="flex gap-2">
-                    <i className="ri-phone-line text-primary-600 mt-0.5"></i>
-                    {loc.phone}
-                  </div>
-                  <div className="flex gap-2">
                     <i className="ri-user-line text-primary-600 mt-0.5"></i>
                     Manager: <span className="font-semibold text-foreground-950">{loc.warden}</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <i className="ri-phone-line text-primary-600 mt-0.5"></i>
+                    <a
+                      href={`tel:${loc.managerPhone}`}
+                      className="font-semibold text-foreground-950 hover:text-primary-600 transition"
+                    >
+                      {loc.phone}
+                    </a>
                   </div>
                 </div>
                 <a

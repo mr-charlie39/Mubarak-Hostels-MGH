@@ -132,8 +132,13 @@ export default function HostelContact() {
                     <i className="ri-phone-line text-primary-600"></i>
                   </div>
                   <div>
-                    <div className="font-semibold text-foreground-950">Phone</div>
-                    <div className="text-foreground-600">{loc.phone}</div>
+                    <div className="font-semibold text-foreground-950">Manager Phone</div>
+                    <a
+                      href={`tel:${loc.managerPhone}`}
+                      className="text-foreground-600 hover:text-primary-600 transition"
+                    >
+                      {loc.phone}
+                    </a>
                   </div>
                 </li>
                 <li className="flex gap-3">
@@ -171,7 +176,7 @@ export default function HostelContact() {
                   name={wardenForHostel?.name ?? loc.warden}
                   position={wardenForHostel?.position ?? "Manager"}
                   hostelName={hostel.name}
-                  phone={wardenForHostel?.phone ?? null}
+                  phone={wardenForHostel?.phone ?? loc.managerPhone}
                   email={wardenForHostel?.email ?? null}
                   avatarUrl={wardenForHostel?.avatarUrl ?? null}
                   size="sm"

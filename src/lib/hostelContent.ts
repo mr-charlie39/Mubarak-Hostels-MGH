@@ -29,8 +29,10 @@ export type DetailContent = {
 
 export type LocationContent = {
   id: number;
+  name: string;
   address: string;
   phone: string;
+  managerPhone: string;
   whatsapp: string;
   email: string;
   mapEmbed: string;
@@ -73,8 +75,10 @@ export function getHostelLocation(id: number, hostel?: Hostel): LocationContent 
   if (mock) {
     return {
       id: mock.id,
+      name: mock.name,
       address: mock.address,
       phone: mock.phone,
+      managerPhone: mock.managerPhone,
       whatsapp: mock.whatsapp,
       email: mock.email,
       mapEmbed: mock.mapEmbed,
@@ -87,8 +91,10 @@ export function getHostelLocation(id: number, hostel?: Hostel): LocationContent 
   const rawPhone = hostel?.phone || "";
   return {
     id,
+    name: hostel?.name || "",
     address: hostel?.address || hostel?.location || "Rawalpindi, Pakistan",
     phone: rawPhone,
+    managerPhone: rawPhone.replace(/[^0-9]/g, ""),
     whatsapp: rawPhone.replace(/[^0-9]/g, ""),
     email: hostel?.email || "",
     mapEmbed: `https://maps.google.com/maps?q=${place}&t=&z=13&ie=UTF8&iwloc=&output=embed`,

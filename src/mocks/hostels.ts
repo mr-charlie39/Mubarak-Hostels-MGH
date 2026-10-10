@@ -43,9 +43,9 @@ export const facilities = [
   { icon: "ri-flashlight-line", title: "24/7 Electricity", desc: "Uninterrupted power with backup generators on every floor." },
   { icon: "ri-wifi-line", title: "High-Speed Wi-Fi", desc: "Fiber-optic internet in every room, common area and study lounge." },
   { icon: "ri-camera-lens-line", title: "CCTV Surveillance", desc: "24/7 monitored cameras covering entrances, hallways and lobbies." },
-  { icon: "ri-shield-user-line", title: "Trained Security", desc: "On-duty guards and biometric visitor management around the clock." },
+  { icon: "ri-shield-user-line", title: "Security", desc: "Security guard is available 24/7 for the safety and well-being of all residents." },
   { icon: "ri-restaurant-2-line", title: "Fresh Mess Food", desc: "Hygienic breakfast, lunch and dinner curated by our in-house chefs." },
-  { icon: "ri-t-shirt-line", title: "Laundry & Housekeeping", desc: "Weekly laundry pickup and daily housekeeping for a spotless stay." },
+  { icon: "ri-t-shirt-line", title: "Laundry & Housekeeping", desc: "Weekly laundry pickup." },
   { icon: "ri-drop-line", title: "Hot & Cold Water", desc: "Filtered drinking water and instant hot water across all washrooms." },
   { icon: "ri-book-open-line", title: "Study Lounges", desc: "Quiet, well-lit study zones designed for focus and productivity." },
 ];
@@ -149,9 +149,11 @@ export const hostelDetails = [
 export const hostelLocations = [
   {
     id: 1,
+    name: "Jinnah House",
     address: "400, 401, 419, D Block, Satellite Town, Rawalpindi, 46300",
-    phone: "+92 300 111 0001",
-    whatsapp: "923001110001",
+    phone: "0341 9715017",
+    managerPhone: "03419715017",
+    whatsapp: "923419715017",
     email: "jinnah@mubarakhostels.pk",
     mapEmbed:
       "https://maps.google.com/maps?q=J3RC%2BJR8%20D%20Block%20Satellite%20Town%20Rawalpindi%2046300&t=&z=16&ie=UTF8&iwloc=&output=embed",
@@ -165,9 +167,11 @@ export const hostelLocations = [
   },
   {
     id: 2,
+    name: "SAMA House",
     address: "400, 401, 419, D Block, Satellite Town, Rawalpindi, 46300",
-    phone: "+92 300 111 0002",
-    whatsapp: "923001110002",
+    phone: "0310 5948138",
+    managerPhone: "03105948138",
+    whatsapp: "923105948138",
     email: "sama@mubarakhostels.pk",
     mapEmbed:
       "https://maps.google.com/maps?q=J3RC%2BJR8%20D%20Block%20Satellite%20Town%20Rawalpindi%2046300&t=&z=16&ie=UTF8&iwloc=&output=embed",
@@ -181,9 +185,11 @@ export const hostelLocations = [
   },
   {
     id: 3,
+    name: "Dr. Abdul Qadeer Khan House",
     address: "400, 401, 419, D Block, Satellite Town, Rawalpindi, 46300",
-    phone: "+92 300 111 0003",
-    whatsapp: "923001110003",
+    phone: "0304 5889984",
+    managerPhone: "03045889984",
+    whatsapp: "923045889984",
     email: "abdulqadeer@mubarakhostels.pk",
     mapEmbed:
       "https://maps.google.com/maps?q=J3RC%2BJR8%20D%20Block%20Satellite%20Town%20Rawalpindi%2046300&t=&z=16&ie=UTF8&iwloc=&output=embed",
