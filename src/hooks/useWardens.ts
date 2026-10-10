@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { api, apiMode } from "@/lib/api";
+import { api, apiMode, resolveImageUrl } from "@/lib/api";
 
 export type PublicWarden = {
   id: string;
@@ -33,7 +33,12 @@ export function useWardens() {
             position: string | null;
           }>
         >("/public/wardens");
-        setWardens(rows);
+        setWardens(
+          rows.map((w) => ({
+            ...w,
+            avatarUrl: resolveImageUrl(w.avatarUrl) ?? null,
+          }))
+        );
         return;
       }
       const { data, error: err } = await supabase
@@ -60,7 +65,7 @@ export function useWardens() {
             email: w.email,
             phone: w.phone,
             hostelId: w.hostel_id,
-            avatarUrl: w.avatar_url,
+            avatarUrl: resolveImageUrl(w.avatar_url) ?? null,
             position: w.position ?? "Manager",
           }))
         );

@@ -180,6 +180,11 @@ export const api = {
 };
 
 // Upload a file as multipart/form-data. Returns the stored URL.
+//
+// The backend also returns a host-independent `path` (e.g. "/uploads/x.jpg").
+// We prefer that so an image stored today still resolves after the app moves
+// host (localhost -> vercel -> custom domain). Storing the absolute `url`
+// bakes in whatever host was live at upload time and breaks later.
 export async function uploadFile(file: File): Promise<string> {
   if (!apiMode) {    return new Promise((resolve) => {
       const reader = new FileReader();
@@ -211,15 +216,53 @@ export async function uploadFile(file: File): Promise<string> {
     const msg = (data as { error?: string } | null)?.error || "Could not upload this image.";
     throw new ApiError(msg);
   }
-  return (data as { url?: string }).url ?? "";
+  const payload = data as { url?: string; path?: string } | null;
+  // Prefer the relative path; fall back to relativising the absolute url.
+  return payload?.path ?? toRelativeUploadPath(payload?.url ?? "") ?? "";
+}
+
+/**
+ * The API origin (scheme://host[:port]) behind `apiBaseUrl`. Uploaded files are
+ * served from the server root ("/uploads/..."), NOT under the "/api" prefix, so
+ * resolving them against the full `apiBaseUrl` would 404.
+ */
+export function apiOrigin(): string {
+  if (!apiBaseUrl) return "";
+  try {
+    return new URL(apiBaseUrl).origin;
+  } catch {
+    return apiBaseUrl.replace(/\/api\/?$/, "");
+  }
+}
+
+/** Turn an absolute upload URL from any known host into a root-relative path. */
+function toRelativeUploadPath(url: string): string | null {
+  if (!url) return null;
+  const i = url.indexOf("/uploads/");
+  return i >= 0 ? url.slice(i) : null;
 }
 
 // Resolve a possibly-relative image path (uploaded files) to a usable URL.
 export function resolveImageUrl(src: string | null | undefined): string | null {
   if (!src) return null;
-  if (/^https?:\/\//.test(src)) return src;
   if (src.startsWith("data:")) return src;
-  if (apiMode && src.startsWith("/uploads")) return `${apiBaseUrl}${src}`;
+
+  // Stored uploads are root-relative; serve them from the API origin.
+  if (src.startsWith("/uploads/")) {
+    const origin = apiOrigin();
+    return origin ? `${origin}${src}` : src;
+  }
+
+  if (/^https?:\/\//.test(src)) {
+    // An absolute upload URL that doesn't match the current API origin is
+    // stale (e.g. saved while running on localhost or a preview domain).
+    // Re-point it at the current API origin so the file still resolves.
+    const rel = toRelativeUploadPath(src);
+    const origin = apiOrigin();
+    if (rel && origin && !src.startsWith(origin)) return `${origin}${rel}`;
+    return src;
+  }
+
   return src;
 }
 

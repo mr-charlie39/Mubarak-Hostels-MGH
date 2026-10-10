@@ -9,6 +9,7 @@
 // ---------------------------------------------------------------------------
 
 import { hostels } from "@/mocks/hostels";
+import { resolveImageUrl } from "@/lib/api";
 
 const GENERIC_IMAGE =
   "https://readdy.ai/api/search-image?query=Modern%20five%20storey%20student%20hostel%20building%20exterior%20with%20warm%20cream%20facade%20and%20sage%20green%20accent%20details%2C%20clean%20minimal%20residential%20architecture%2C%20manicured%20landscaped%20entrance%20with%20lush%20green%20plants%20and%20trees%2C%20warm%20golden%20hour%20sunlight%2C%20clear%20blue%20sky%2C%20professional%20architectural%20photography&width=1000&height=700&orientation=landscape";
@@ -17,10 +18,15 @@ const defaults = new Map<number, string>(hostels.map((h) => [h.id, h.image]));
 
 /**
  * Returns the hostel's own image when one has been set, otherwise a
- * deterministic default (per-id for the original six hostels, generic for
+ * deterministic default (per-id for the original seed hostels, generic for
  * any others).
+ *
+ * Uploaded photos are stored as root-relative "/uploads/..." paths, so they are
+ * resolved against the current API origin here — otherwise the browser would
+ * request them from the site's own origin and get a 404.
  */
 export function getHostelImage(id: number, imageUrl: string | null | undefined): string {
-  if (imageUrl) return imageUrl;
+  const resolved = resolveImageUrl(imageUrl);
+  if (resolved) return resolved;
   return defaults.get(id) ?? GENERIC_IMAGE;
 }

@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabase";
-import { api, apiMode } from "@/lib/api";
+import { api, apiMode, resolveImageUrl } from "@/lib/api";
 
 export type ManagedWarden = {
   id: string;
@@ -30,7 +30,13 @@ async function call(action: string, body: Record<string, unknown> = {}): Promise
 
 export async function listWardens(): Promise<ManagedWarden[]> {
   const res = await call("list");
-  return res.wardens ?? [];
+  const wardens = res.wardens ?? [];
+  // Uploaded avatars are stored host-independent ("/uploads/..."); resolve them
+  // against the API origin so they render on the dashboard as well as publicly.
+  return wardens.map((w) => ({
+    ...w,
+    avatar_url: resolveImageUrl(w.avatar_url) ?? null,
+  }));
 }
 
 export async function createWarden(payload: {
