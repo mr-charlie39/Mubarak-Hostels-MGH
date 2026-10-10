@@ -76,6 +76,22 @@ CREATE TABLE IF NOT EXISTS room_rates (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------------
+-- uploaded_files — persisted image uploads
+--
+-- Serverless hosts (Vercel) wipe /tmp between deploys, so uploads live in the
+-- database instead. Served back via GET /uploads/:filename with the correct
+-- MIME type and long-term cache headers.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS uploaded_files (
+  filename   VARCHAR(120)  NOT NULL,
+  mime       VARCHAR(50)   NOT NULL DEFAULT 'image/jpeg',
+  data       MEDIUMBLOB    NOT NULL,
+  bytes      INT UNSIGNED  NOT NULL DEFAULT 0,
+  created_at TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (filename)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------------------------------------------------------------------------
 -- students — hostel residents
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS students (

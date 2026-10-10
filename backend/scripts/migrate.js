@@ -1,4 +1,7 @@
 import dotenv from "dotenv";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { pool } from "../src/db.js";
 
 dotenv.config();
@@ -14,6 +17,32 @@ dotenv.config();
 //
 // Safe to run more than once.
 // ---------------------------------------------------------------------------
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Copy any images previously written to the local uploads dir into
+// `uploaded_files` so they keep working after moving to a serverless host.
+async function backfillDiskUploads(conn) {
+  const dir = path.resolve(__dirname, "../uploads");
+  let files = [];
+  try {
+    files = fs.readdirSync(dir).filter((f) => /\.(jpe?g|png|webp)$/i.test(f));
+  } catch {
+    return; // no disk dir
+  }
+  for (const f of files) {
+    const abs = path.join(dir, f);
+    const stat = fs.statSync(abs);
+    if (!stat.isFile()) continue;
+    const buf = fs.readFileSync(abs);
+    const mime = /\.png$/i.test(f) ? "image/png" : /\.webp$/i.test(f) ? "image/webp" : "image/jpeg";
+    await conn.query(
+      "INSERT IGNORE INTO uploaded_files (filename, mime, data, bytes) VALUES (?, ?, ?, ?)",
+      [f, mime, buf, buf.length]
+    );
+    console.log(`  backfilled ${f} (${(buf.length / 1024).toFixed(0)} KB)`);
+  }
+}
 
 async function tableHasColumn(conn, table, column) {
   const [rows] = await conn.query(
@@ -213,6 +242,19 @@ async function main() {
       PRIMARY KEY (id),
       KEY idx_audit_logs_created (created_at)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`);
+
+  await conn.query(`CREATE TABLE IF NOT EXISTS uploaded_files (
+      filename   VARCHAR(120)   NOT NULL,
+      mime       VARCHAR(50)    NOT NULL DEFAULT 'image/jpeg',
+      data       MEDIUMBLOB     NOT NULL,
+      bytes      INT UNSIGNED   NOT NULL DEFAULT 0,
+      created_at TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (filename)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`);
+
+  // Backfill any files that were uploaded to the local disk directory into the
+  // database, so they keep working after the host switches to serverless.
+  backfillDiskUploads(conn).catch(() => {});
 
   console.log("Recreating hostel_admins view…");
   await conn.query(`

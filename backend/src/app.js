@@ -24,7 +24,7 @@ import publicRoutes from "./routes/public.js";
 import maintenanceRoutes from "./routes/maintenance.js";
 import notificationsRoutes from "./routes/notifications.js";
 import improvementsRoutes from "./routes/improvements.js";
-import uploadsRoutes, { UPLOADS_DIR } from "./routes/uploads.js";
+import uploadsRoutes, { serveUpload, UPLOADS_DIR } from "./routes/uploads.js";
 import { checkDatabase, describeDbConfig } from "./db.js";
 
 dotenv.config();
@@ -67,6 +67,8 @@ export function createApp() {
     next();
   });
 
+  // Uploaded images: MySQL first (persists on serverless), then disk fallback.
+  app.get("/uploads/:file", serveUpload);
   app.use("/uploads", express.static(UPLOADS_DIR, { fallthrough: true, maxAge: "7d" }));
 
   app.get("/api/health", async (_req, res) => {
