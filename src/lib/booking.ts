@@ -472,6 +472,7 @@ export async function loadHostelRooms(hostelId: number): Promise<RoomBeds[]> {
         capacity: number;
         beds: Bed[];
         availableCount: number;
+        imageUrl?: string | null;
       }>
     >(`/rooms/booking-rooms?hostelId=${hostelId}`);
     return rows.map((r) => ({
@@ -481,7 +482,7 @@ export async function loadHostelRooms(hostelId: number): Promise<RoomBeds[]> {
       capacity: r.capacity,
       beds: r.beds,
       availableCount: r.availableCount,
-      image: getRoomImage(`${hostelId}-${r.label}`, r.capacity),
+      image: getRoomImage(`${hostelId}-${r.label}`, r.capacity, r.imageUrl),
     }));
   }
   const rooms = await fetchBookingRooms(hostelId);

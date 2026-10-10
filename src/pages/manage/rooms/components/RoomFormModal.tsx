@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { roomTypes } from "@/mocks/management/rooms";
+import ImageUpload from "@/pages/manage/components/ImageUpload";
 
 export type RoomFormValues = {
   roomNumber: string;
@@ -7,11 +8,19 @@ export type RoomFormValues = {
   roomType: string;
   capacity: number;
   status: string;
+  imageUrl: string;
 };
 
 type Props = {
   open: boolean;
-  initial: { number: string; floor: number; type: string; capacity: number; status: string } | null;
+  initial: {
+    number: string;
+    floor: number;
+    type: string;
+    capacity: number;
+    status: string;
+    imageUrl?: string | null;
+  } | null;
   onClose: () => void;
   onSave: (data: RoomFormValues) => void;
 };
@@ -25,6 +34,7 @@ export default function RoomFormModal({ open, initial, onClose, onSave }: Props)
   const [roomType, setRoomType] = useState("3-Seater Comfort");
   const [capacity, setCapacity] = useState(3);
   const [status, setStatus] = useState("active");
+  const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -35,12 +45,14 @@ export default function RoomFormModal({ open, initial, onClose, onSave }: Props)
       setRoomType(initial.type);
       setCapacity(initial.capacity);
       setStatus(initial.status);
+      setImageUrl(initial.imageUrl ?? "");
     } else {
       setRoomNumber("");
       setFloor(1);
       setRoomType("3-Seater Comfort");
       setCapacity(3);
       setStatus("active");
+      setImageUrl("");
     }
     setError("");
   }, [open, initial]);
@@ -58,7 +70,7 @@ export default function RoomFormModal({ open, initial, onClose, onSave }: Props)
       setError("Room number is required.");
       return;
     }
-    onSave({ roomNumber: roomNumber.trim(), floor, roomType, capacity, status });
+    onSave({ roomNumber: roomNumber.trim(), floor, roomType, capacity, status, imageUrl });
   };
 
   return (
@@ -147,6 +159,15 @@ export default function RoomFormModal({ open, initial, onClose, onSave }: Props)
               <option value="inactive">Inactive</option>
             </select>
           </div>
+
+          <ImageUpload
+            label="Room Photo"
+            value={imageUrl}
+            onChange={(url) => setImageUrl(url ?? "")}
+          />
+          <p className="-mt-2 text-xs text-foreground-400">
+            Shown for this room on the house Rooms &amp; Beds page, the booking flow and the public gallery.
+          </p>
 
           {error && (
             <div className="text-sm text-accent-700 bg-accent-100 rounded-md px-3 py-2">{error}</div>

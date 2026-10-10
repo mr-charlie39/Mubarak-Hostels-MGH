@@ -13,6 +13,7 @@
 // ---------------------------------------------------------------------------
 
 import { bestRoomPhoto, roomPhotosByHouse } from "@/mocks/houseMedia";
+import { resolveImageUrl } from "@/lib/api";
 
 const IMAGES_KEY = "mubarak_room_images_v1";
 const CHANGE_EVENT = "mubarak-room-images-changed";
@@ -77,9 +78,17 @@ export function setRoomImage(key: string, dataUrl: string): void {
   writeOverrides(next);
 }
 
-export function getRoomImage(key: string, capacity?: number | null): string {
+export function getRoomImage(key: string, capacity?: number | null, imageUrl?: string | null): string {
   const overrides = readOverrides();
-  return overrides[key] || defaultRoomImage(key, capacity);
+  // 1. An image uploaded for this specific room wins.
+  if (imageUrl) {
+    const resolved = resolveImageUrl(imageUrl);
+    if (resolved) return resolved;
+  }
+  // 2. A locally-set override (admin panel, stored in the browser).
+  if (overrides[key]) return overrides[key];
+  // 3. A real photo matched to the room's house + capacity.
+  return defaultRoomImage(key, capacity);
 }
 
 export function subscribeRoomImages(cb: () => void): () => void {

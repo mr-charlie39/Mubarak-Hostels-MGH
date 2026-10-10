@@ -69,7 +69,12 @@ router.get("/availability/:hostelId", async (req, res) => {
     const hostelId = Number(req.params.hostelId);
 
     const [rooms] = await pool.query(
-      "SELECT label, block, floor, room_type, capacity FROM rooms ORDER BY id"
+      `SELECT r.label, r.block, r.floor, r.room_type, r.capacity, hr.image_url
+       FROM rooms r
+       LEFT JOIN hostel_rooms hr
+         ON hr.hostel_id = ? AND hr.room_number = r.label
+       ORDER BY r.id`,
+      [hostelId]
     );
     const [students] = await pool.query(
       "SELECT room, bed FROM students WHERE hostel_id = ? AND status != 'Left'",
@@ -91,6 +96,7 @@ router.get("/availability/:hostelId", async (req, res) => {
         floor: r.floor,
         type: r.room_type,
         capacity: r.capacity,
+        imageUrl: r.image_url ?? null,
       })),
       occupied: students.map((s) => ({ room: s.room, bed: Number(s.bed) })),
       reserved: bookings.map((b) => ({

@@ -97,9 +97,10 @@ export default function Rooms() {
           room_type: data.roomType,
           capacity: data.capacity,
           status: data.status,
+          image_url: data.imageUrl || null,
         });
       } else {
-        await createRoom(data);
+        await createRoom({ ...data, imageUrl: data.imageUrl || null });
       }
       setRoomModal({ open: false, editing: null });
     } catch (e) {
@@ -296,6 +297,7 @@ export default function Rooms() {
                   type: roomModal.editing.type,
                   capacity: roomModal.editing.capacity,
                   status: roomModal.editing.status,
+                  imageUrl: roomModal.editing.imageUrl,
                 }
               : null
           }

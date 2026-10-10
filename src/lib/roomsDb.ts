@@ -313,6 +313,8 @@ export type PublicRoom = {
   occupied: number;
   maintenance: number;
   available: number;
+  /** Uploaded per-room photo (root-relative "/uploads/..."), when set. */
+  imageUrl?: string | null;
 };
 
 export type PublicAvailability = {
@@ -429,6 +431,8 @@ export type BookingRoom = {
   beds: BookingBed[];
   availableCount: number;
   image: string;
+  /** Raw uploaded photo path, if the room has one. */
+  imageUrl?: string | null;
 };
 
 // Real room + bed availability for the booking flow (public/anon read).
@@ -437,9 +441,12 @@ export type BookingRoom = {
 export async function fetchBookingRooms(hostelId: number): Promise<BookingRoom[]> {
   if (apiMode) {
     const rows = await api.get<
-      Array<{ label: string; block: string; floor: number; capacity: number; beds: BookingBed[]; availableCount: number }>
+      Array<{ label: string; block: string; floor: number; capacity: number; beds: BookingBed[]; availableCount: number; imageUrl?: string | null }>
     >(`/rooms/booking-rooms?hostelId=${hostelId}`);
-    return rows.map((r) => ({ ...r, image: getRoomImage(`${hostelId}-${r.label}`, r.capacity) }));
+    return rows.map((r) => ({
+      ...r,
+      image: getRoomImage(`${hostelId}-${r.label}`, r.capacity, r.imageUrl),
+    }));
   }
   const { data: rooms, error: rErr } = await supabase
     .from("rooms")

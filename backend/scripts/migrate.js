@@ -66,6 +66,9 @@ async function tableIsEmpty(conn, table) {
 }
 
 async function addColumn(conn, table, column, definition) {
+  // If the table doesn't exist yet it will be created later with the column
+  // already present (see schema.sql), so there is nothing to alter here.
+  if (!(await tableExists(conn, table))) return;
   if (await tableHasColumn(conn, table, column)) {
     console.log(`  column ${table}.${column} already exists`);
     return;
@@ -97,6 +100,12 @@ async function main() {
   await addColumn(conn, "hostels", "rooms", "INT UNSIGNED NOT NULL DEFAULT 0");
   await addColumn(conn, "hostels", "beds", "INT UNSIGNED NOT NULL DEFAULT 0");
   await addColumn(conn, "hostels", "updated_at", "TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP");
+
+  // Per-room and per-student photos. These columns are referenced by the API
+  // but were never added to older databases, which surfaced as
+  // "Unknown column 'image_url' in 'field list'" when adding a room.
+  await addColumn(conn, "hostel_rooms", "image_url", "VARCHAR(500) NULL");
+  await addColumn(conn, "students", "image_url", "VARCHAR(500) NULL");
 
   console.log("Backfilling hostel cover images…");
   const HOSTEL_IMAGES = [

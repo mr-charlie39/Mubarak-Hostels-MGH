@@ -154,7 +154,7 @@ export default function RoomGrid({ hostelId }: { hostelId: number }) {
                     >
                       <div className="relative h-20 w-full overflow-hidden bg-background-100">
                         <img
-                          src={getRoomImage(`${hostelId}-${room.roomNumber}`, room.capacity)}
+                          src={getRoomImage(`${hostelId}-${room.roomNumber}`, room.capacity, room.imageUrl)}
                           alt={`Room ${room.roomNumber}`}
                           title={`Room ${room.roomNumber} — ${meta.label}`}
                           className="w-full h-full object-cover object-bottom"

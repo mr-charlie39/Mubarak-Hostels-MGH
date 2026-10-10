@@ -430,6 +430,7 @@ router.get("/public-availability/:hostelId", async (req, res) => {
           occupied,
           maintenance,
           available: Math.max(0, Number(r.capacity) - occupied - maintenance),
+          imageUrl: r.image_url ?? null,
         };
       });
 
@@ -511,6 +512,7 @@ router.get("/booking-rooms", async (req, res) => {
           capacity: Number(r.capacity),
           beds: mapped,
           availableCount: mapped.filter((m) => m.status === "available").length,
+          imageUrl: r.image_url ?? null,
         };
       });
 
