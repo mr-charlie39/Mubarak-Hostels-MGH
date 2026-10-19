@@ -48,6 +48,9 @@ async function gather({ hostelId, wardenId, status, from, to, scopeHostel }) {
   const [allAttendance] = await pool.query(
     "SELECT id, student_id, date, check_in, check_out, status FROM attendance"
   );
+  const [allExpenses] = await pool.query(
+    "SELECT id, hostel_id, purchase_item, price, category, expense_date, created_by FROM expenses"
+  );
   const [users] = await pool.query(
     "SELECT id, name, email, phone, position, role, hostel_id FROM users WHERE role = 'warden'"
   );
@@ -65,6 +68,10 @@ async function gather({ hostelId, wardenId, status, from, to, scopeHostel }) {
   if (status) complaints = complaints.filter((c) => c.status === status);
   if (from) complaints = complaints.filter((c) => (c.created_at ?? "") >= parseDate(from));
   if (to) complaints = complaints.filter((c) => (c.created_at ?? "") <= parseDate(to));
+
+  let expenses = scope ? allExpenses.filter((e) => Number(e.hostel_id) === scope) : allExpenses;
+  if (from) expenses = expenses.filter((e) => (e.expense_date ?? "") >= from.slice(0, 10));
+  if (to) expenses = expenses.filter((e) => (e.expense_date ?? "") <= to.slice(0, 10));
 
   const studentIds = new Set(students.map((s) => s.id));
   let fees = allFees.filter((f) => studentIds.has(Number(f.student_id)));
@@ -147,6 +154,8 @@ async function gather({ hostelId, wardenId, status, from, to, scopeHostel }) {
   const feeOverdue = fees.filter((f) => f.status === "unfetched").reduce((s, f) => s + Number(f.amount), 0);
   const feeTotal = fees.reduce((s, f) => s + Number(f.amount), 0);
 
+  const totalExpenses = expenses.reduce((s, e) => s + Number(e.price), 0);
+
   const improvementByStatus = {};
   for (const i of improvementsScoped) improvementByStatus[i.status] = (improvementByStatus[i.status] ?? 0) + 1;
 
@@ -177,6 +186,9 @@ async function gather({ hostelId, wardenId, status, from, to, scopeHostel }) {
     collectionRate: feeTotal ? Math.round((feeCollected / feeTotal) * 100) : 0,
     paidStudents: new Set(fees.filter((f) => f.status === "fetched").map((f) => f.student_id)).size,
     pendingFeeStudents: new Set(fees.filter((f) => f.status !== "fetched").map((f) => f.student_id)).size,
+    totalExpenses,
+    expensesByHostel: null,
+    expensesByCategory: null,
     totalImprovements: improvementsScoped.length,
     improvementsImplemented: improvementByStatus["Implemented"] ?? 0,
     improvementsAccepted: improvementByStatus["Accepted"] ?? 0,

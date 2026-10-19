@@ -55,6 +55,9 @@ export type ReportsData = {
     collectionRate: number;
     paidStudents: number;
     pendingFeeStudents: number;
+    totalExpenses?: number;
+    expensesByHostel?: any[];
+    expensesByCategory?: Record<string, number>;
     totalImprovements: number;
     improvementsImplemented: number;
     improvementsAccepted: number;

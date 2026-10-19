@@ -204,6 +204,7 @@ export default function Reports() {
               <StatCard label="Fee Collected" value={`PKR ${(s.feeCollected / 1000).toFixed(0)}K`} icon="ri-check-double-line" tone="primary" sub={`${s.paidStudents} students paid`} />
               <StatCard label="Fee Pending" value={`PKR ${(s.feePending / 1000).toFixed(0)}K`} icon="ri-time-line" tone="accent" sub={`${s.pendingFeeStudents} students due`} />
               <StatCard label="Collection Rate" value={`${s.collectionRate}%`} icon="ri-pie-chart-line" tone="secondary" sub={`${s.totalBookings} bookings`} />
+              <StatCard label="Total Expenses" value={`PKR ${((s.totalExpenses ?? 0) / 1000).toFixed(0)}K`} icon="ri-wallet-3-line" tone="secondary" sub="in selected scope" />
               <StatCard label="Suggestions" value={String(s.totalImprovements)} icon="ri-lightbulb-line" tone="accent" sub={`${s.improvementsImplemented} implemented`} />
             </div>
 
