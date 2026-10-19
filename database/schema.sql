@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS users (
   name          VARCHAR(255)     NOT NULL,
   email         VARCHAR(255)     NOT NULL,
   password_hash VARCHAR(255)     NOT NULL,
-  role          ENUM('admin','warden') NOT NULL DEFAULT 'warden',
+  role          ENUM('admin','superintendent','warden','student') NOT NULL DEFAULT 'warden',
   hostel_id     INT UNSIGNED     NULL,
   phone         VARCHAR(50)      NULL,
   avatar_url    VARCHAR(500)     NULL,

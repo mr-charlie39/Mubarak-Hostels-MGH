@@ -49,7 +49,6 @@ router.post("/register", async (req, res) => {
     const name = String(req.body.name || "").trim();
     const email = String(req.body.email || "").trim().toLowerCase();
     const password = String(req.body.password || "");
-    const hostelId = req.body.hostelId ? Number(req.body.hostelId) : null;
 
     if (!name || !email || password.length < 6) {
       return res.status(400).json({
@@ -64,11 +63,11 @@ router.post("/register", async (req, res) => {
 
     const hash = bcrypt.hashSync(password, 10);
     const [result] = await pool.query(
-      "INSERT INTO users (name, email, password_hash, role, hostel_id) VALUES (?, ?, ?, 'warden', ?)",
-      [name, email, hash, hostelId]
+      "INSERT INTO users (name, email, password_hash, role, hostel_id) VALUES (?, ?, ?, 'student', NULL)",
+      [name, email, hash]
     );
 
-    const user = { id: result.insertId, role: "warden", name, email, hostel_id: hostelId };
+    const user = { id: result.insertId, role: "student", name, email, hostel_id: null };
     res.status(201).json({ token: signToken(user), user: toUser(user) });
   } catch (err) {
     res.status(500).json({ error: err.message });

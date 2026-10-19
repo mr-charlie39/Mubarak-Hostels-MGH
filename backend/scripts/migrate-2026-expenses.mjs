@@ -37,6 +37,13 @@ async function columnExists(table, col) {
 }
 
 async function run() {
+  // users.role: allow 'student' (public sign-ups) and 'superintendent'
+  const [roleCol] = await pool.query("SHOW COLUMNS FROM users LIKE 'role'");
+  if (roleCol[0] && !String(roleCol[0].Type).includes("student")) {
+    await pool.query(
+      "ALTER TABLE users MODIFY role ENUM('admin','superintendent','warden','student') DEFAULT 'warden'"
+    );
+  }
   // attendance
   if (!(await columnExists("attendance", "recorded_by"))) {
     await pool.query("ALTER TABLE attendance ADD COLUMN recorded_by VARCHAR(255) NULL");

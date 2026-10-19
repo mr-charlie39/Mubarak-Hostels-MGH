@@ -4,6 +4,7 @@ import { useFeeTrend } from "@/hooks/useFeeTrend";
 import { useComplaints } from "@/hooks/useComplaints";
 import { useHostels } from "@/hooks/useHostels";
 import { useOccupancy } from "@/hooks/useOccupancy";
+import { useExpenses } from "@/hooks/useExpenses";
 import StatCard from "./components/StatCard";
 import OccupancyChart from "./components/OccupancyChart";
 import FeeTrendChart from "./components/FeeTrendChart";
@@ -43,6 +44,11 @@ export default function Dashboard() {
     error: feeError,
     reload: reloadFees,
   } = useFeeTrend(expectedPerMonth);
+
+  const { expenses: scopedExpenses } = useExpenses(
+    isHostelAdmin ? { hostelId: user.hostelId } : {}
+  );
+  const totalExpenses = scopedExpenses.reduce((s, e) => s + e.price, 0);
 
   const totalBeds = scopedHostels.reduce(
     (s, h) => s + (occupancy[h.id]?.totalBeds ?? 0),
@@ -101,11 +107,11 @@ export default function Dashboard() {
             sub={`of PKR ${(currentExpected / 1000).toFixed(0)}K expected`}
           />
           <StatCard
-            label="Open Complaints"
-            value={String(openComplaints)}
-            icon="ri-tools-line"
-            tone="accent"
-            sub={`${inProgressComplaints} currently in progress`}
+            label={isHostelAdmin ? "Total Expenses (This Month)" : "Total Expenses (This Month)"}
+            value={`PKR ${(totalExpenses / 1000).toFixed(0)}K`}
+            icon="ri-wallet-3-line"
+            tone="secondary"
+            sub={`spent ${isHostelAdmin ? "in your house" : "across filtered view"}`}
           />
         </div>
 

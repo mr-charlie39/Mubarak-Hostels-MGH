@@ -154,17 +154,12 @@ export async function deleteExpense(id: number): Promise<void> {
 }
 
 export const EXPENSE_CATEGORIES = [
-  "Utilities",
-  "Maintenance",
-  "Food & Mess",
-  "Housekeeping",
-  "Repairs",
-  "Furniture",
-  "Internet",
-  "Security",
-  "Stationery",
-  "Transport",
-  "Other",
+  "Mess",
+  "Utility Bills",
+  "Salaries",
+  "General",
+  "Gas",
+  "Electricity",
 ] as const;
 
 export function formatRupees(n: number): string {
