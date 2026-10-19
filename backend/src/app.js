@@ -24,7 +24,9 @@ import publicRoutes from "./routes/public.js";
 import maintenanceRoutes from "./routes/maintenance.js";
 import notificationsRoutes from "./routes/notifications.js";
 import improvementsRoutes from "./routes/improvements.js";
+import expensesRoutes from "./routes/expenses.js";
 import uploadsRoutes, { serveUpload, UPLOADS_DIR } from "./routes/uploads.js";
+
 import { checkDatabase, describeDbConfig } from "./db.js";
 
 dotenv.config();
@@ -101,6 +103,7 @@ export function createApp() {
   app.use("/api/maintenance", maintenanceRoutes);
   app.use("/api/notifications", notificationsRoutes);
   app.use("/api/improvements", improvementsRoutes);
+  app.use("/api/expenses", expensesRoutes);
   app.use("/api/uploads", uploadsRoutes);
 
   app.use("/api", (_req, res) => {

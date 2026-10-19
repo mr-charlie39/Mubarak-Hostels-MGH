@@ -151,7 +151,7 @@ router.post("/unassign", requireAuth, async (req, res) => {
     const { studentId } = req.body;
     if (!studentId) return res.status(400).json({ error: "studentId is required." });
     await pool.query("DELETE FROM room_allocations WHERE student_id = ?", [studentId]);
-    await pool.query("UPDATE students SET room = NULL, bed = NULL WHERE id = ?", [studentId]);
+    await pool.query("UPDATE students SET room = '', bed = 0 WHERE id = ?", [studentId]);
     res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -419,6 +419,12 @@ router.get("/public-availability/:hostelId", async (req, res) => {
         const roomBeds = beds.filter((x) => Number(x.room_id) === Number(r.id));
         const occupied = roomBeds.filter((x) => occupiedBeds.has(x.id)).length;
         const maintenance = roomBeds.filter((x) => x.is_maintenance).length;
+        let amenities = [];
+        try {
+          amenities = r.amenities ? JSON.parse(r.amenities) : [];
+        } catch {
+          amenities = [];
+        }
         return {
           id: Number(r.id),
           hostelId: Number(r.hostel_id),
@@ -431,6 +437,8 @@ router.get("/public-availability/:hostelId", async (req, res) => {
           maintenance,
           available: Math.max(0, Number(r.capacity) - occupied - maintenance),
           imageUrl: r.image_url ?? null,
+          amenities,
+          description: r.description ?? null,
         };
       });
 

@@ -148,9 +148,10 @@ export default function RoomGrid({ hostelId }: { hostelId: number }) {
                   const status = statusOf(room);
                   const meta = statusMeta[status];
                   return (
-                    <div
+                    <Link
+                      to={`/hostel/${hostelId}/rooms/${room.id}`}
                       key={room.id}
-                      className={`rounded-xl border overflow-hidden flex flex-col ${meta.wrap}`}
+                      className={`rounded-xl border overflow-hidden flex flex-col hover:shadow-sm transition ${meta.wrap}`}
                     >
                       <div className="relative h-20 w-full overflow-hidden bg-background-100">
                         <img
@@ -184,7 +185,7 @@ export default function RoomGrid({ hostelId }: { hostelId: number }) {
                             : `${room.capacity} beds`}
                         </span>
                       </div>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>

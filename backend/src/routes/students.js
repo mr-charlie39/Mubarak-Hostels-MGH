@@ -123,15 +123,21 @@ router.put("/:id", async (req, res) => {
       b.hostel_id = me.hostel_id;
       b.status = b.status === "Left" ? "Left" : b.status;
     }
-    const values = FIELDS.map((f) => {
-      if (f === "bed") return b.bed ?? 1;
-      if (f === "monthly_fee") return b.monthly_fee ?? 0;
-      return b[f] ?? "";
-    });
-    await pool.query(
-      `UPDATE students SET ${FIELDS.map((f) => `${f} = ?`).join(", ")} WHERE id = ?`,
-      [...values, id]
-    );
+    const set = [];
+    const values = [];
+    for (const f of FIELDS) {
+      if (f in b || (f === "bed" && "bed" in b) || (f === "monthly_fee" && "monthly_fee" in b)) {
+        if (f === "bed") { set.push("bed = ?"); values.push(b.bed ?? 1); }
+        else if (f === "monthly_fee") { set.push("monthly_fee = ?"); values.push(b.monthly_fee ?? 0); }
+        else { set.push(`${f} = ?`); values.push(b[f]); }
+      }
+    }
+    if (set.length === 0) {
+      const [rows] = await pool.query("SELECT * FROM students WHERE id = ?", [id]);
+      return res.json(rows[0]);
+    }
+    values.push(id);
+    await pool.query(`UPDATE students SET ${set.join(", ")} WHERE id = ?`, values);
     const [rows] = await pool.query("SELECT * FROM students WHERE id = ?", [id]);
     res.json(rows[0]);
   } catch (err) {

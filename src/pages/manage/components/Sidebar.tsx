@@ -27,6 +27,7 @@ const navItems: NavItem[] = [
   { to: "/manage/improvements", label: "Improvements", icon: "ri-lightbulb-line", roles: ["admin", "warden"] },
   { to: "/manage/notices", label: "Notices", icon: "ri-megaphone-line" },
   { to: "/manage/fees", label: "Fees", icon: "ri-money-rupee-circle-line", roles: ["admin", "superintendent", "warden"] },
+  { to: "/manage/expenses", label: "Expenses", icon: "ri-wallet-3-line", roles: ["admin", "warden"] },
   { to: "/manage/attendance", label: "Attendance", icon: "ri-calendar-check-line", roles: ["admin", "superintendent", "warden"] },
   { to: "/manage/visitors", label: "Visitors", icon: "ri-user-received-line", roles: ["admin", "superintendent"] },
   { to: "/manage/reports", label: "Reports", icon: "ri-bar-chart-line" },

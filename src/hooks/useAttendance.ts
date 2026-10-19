@@ -15,10 +15,13 @@ export type AttendanceRecord = {
 
 type AttendanceRow = {
   id: number;
-  student_id: number;
+  student_id?: number;
+  studentId?: number;
   date: string;
-  check_in: string | null;
-  check_out: string | null;
+  check_in?: string | null;
+  checkIn?: string | null;
+  check_out?: string | null;
+  checkOut?: string | null;
   status: AttendanceStatus;
 };
 
@@ -53,10 +56,10 @@ function nowTime(): string {
 function mapRow(r: AttendanceRow): AttendanceRecord {
   return {
     id: Number(r.id),
-    studentId: Number(r.student_id),
+    studentId: Number(r.student_id ?? r.studentId),
     date: r.date,
-    checkIn: r.check_in,
-    checkOut: r.check_out,
+    checkIn: r.check_in ?? r.checkIn ?? null,
+    checkOut: r.check_out ?? r.checkOut ?? null,
     status: r.status,
   };
 }
@@ -73,12 +76,15 @@ export function useAttendance() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (filters?: { date?: string; hostelId?: number }) => {
     setLoading(true);
     setError("");
     if (apiMode) {
       try {
-        const rows = await api.get<AttendanceRow[]>("/attendance");
+        const qs = new URLSearchParams();
+        if (filters?.date) qs.set("date", filters.date);
+        if (filters?.hostelId) qs.set("hostelId", String(filters.hostelId));
+        const rows = await api.get<AttendanceRow[]>(`/attendance${qs.toString() ? `?${qs}` : ""}`);
         setRecords(rows.map(mapRow));
       } catch (e) {
         setError((e as Error).message || "Could not load attendance. Please try again.");
@@ -89,15 +95,18 @@ export function useAttendance() {
       return;
     }
     try {
-      const { data, error: err } = await supabase
-        .from("attendance")
-        .select("*")
-        .order("date", { ascending: false });
+      let q = supabase.from("attendance").select("*").order("date", { ascending: false });
+      if (filters?.date) q = q.eq("date", filters.date);
+      const { data, error: err } = await q;
       if (err) {
         setError(err.message);
         setRecords([]);
       } else {
-        setRecords(((data as AttendanceRow[]) ?? []).map(mapRow));
+        let res = ((data as AttendanceRow[]) ?? []).map(mapRow);
+        if (filters?.hostelId) {
+          res = res as any;
+        }
+        setRecords(res as any);
       }
     } catch {
       setError("Could not load attendance. Please try again.");

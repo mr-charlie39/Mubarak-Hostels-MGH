@@ -1,5 +1,11 @@
 import type { RouteObject } from "react-router-dom";
+import { lazy } from "react";
 import NotFound from "@/pages/NotFound";
+
+function lazyLoad<T extends { default: React.ComponentType<any> }>(loader: () => Promise<T>) {
+  const Comp = lazy(loader);
+  return <Comp />;
+}
 import Home from "@/pages/home/page";
 import About from "@/pages/about/page";
 import Hostels from "@/pages/hostels/page";
@@ -67,6 +73,7 @@ const routes: RouteObject[] = [
     children: [
       { index: true, element: <HostelHome /> },
       { path: "rooms", element: <HostelRooms /> },
+      { path: "rooms/:roomId", element: lazyLoad(() => import("@/pages/hostel/rooms/detail/page")) },
       { path: "gallery", element: <HostelGallery /> },
       { path: "notices", element: <HostelNotices /> },
       { path: "contact", element: <HostelContact /> },
@@ -109,8 +116,10 @@ const routes: RouteObject[] = [
       { path: "students", element: <Students /> },
       { path: "students/:id", element: <StudentDetail /> },
       { path: "rooms", element: <Rooms /> },
+      { path: "rooms/:id", element: lazyLoad(() => import("@/pages/manage/rooms/detail/page")) },
       { path: "bookings", element: <Bookings /> },
       { path: "fees", element: <Fees /> },
+      { path: "expenses", element: lazyLoad(() => import("@/pages/manage/expenses/page")) },
       { path: "attendance", element: <Attendance /> },
       { path: "visitors", element: <Visitors /> },
       { path: "complaints", element: <Complaints /> },

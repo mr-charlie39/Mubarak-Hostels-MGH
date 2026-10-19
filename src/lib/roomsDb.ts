@@ -140,7 +140,7 @@ export async function unassignStudent(studentId: number): Promise<void> {
 
   const { error: updErr } = await supabase
     .from("students")
-    .update({ room: null, bed: null })
+    .update({ room: "", bed: 0 })
     .eq("id", studentId);
   if (updErr) throw new Error(updErr.message);
 }
@@ -315,6 +315,8 @@ export type PublicRoom = {
   available: number;
   /** Uploaded per-room photo (root-relative "/uploads/..."), when set. */
   imageUrl?: string | null;
+  amenities?: string[] | null;
+  description?: string | null;
 };
 
 export type PublicAvailability = {
@@ -339,7 +341,7 @@ export async function fetchPublicHostelAvailability(
   }
   const { data: rooms, error: rErr } = await supabase
     .from("rooms")
-    .select("id, hostel_id, room_number, floor, room_type, capacity, status")
+    .select("id, hostel_id, room_number, floor, room_type, capacity, status, image_url, amenities, description")
     .eq("hostel_id", hostelId)
     .eq("status", "active");
   if (rErr) throw new Error(rErr.message);
@@ -352,6 +354,9 @@ export async function fetchPublicHostelAvailability(
     room_type: string;
     capacity: number;
     status: string;
+    image_url?: string | null;
+    amenities?: string[] | null;
+    description?: string | null;
   }[];
   const roomIds = roomList.map((r) => r.id);
 
@@ -398,6 +403,9 @@ export async function fetchPublicHostelAvailability(
         occupied,
         maintenance,
         available: Math.max(0, r.capacity - occupied - maintenance),
+        imageUrl: r.image_url ?? null,
+        amenities: Array.isArray(r.amenities) ? (r.amenities as string[]) : [],
+        description: r.description ?? null,
       };
     });
 

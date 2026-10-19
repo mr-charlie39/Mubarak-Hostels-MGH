@@ -41,6 +41,7 @@ export default function Rooms() {
     error,
     reload,
     assign,
+    unassign,
     toggleMaintenance,
     createRoom,
     editRoom,
@@ -73,6 +74,15 @@ export default function Rooms() {
     setActionError("");
     try {
       await toggleMaintenance(bedId, current);
+    } catch (e) {
+      setActionError((e as Error).message);
+    }
+  };
+
+  const handleUnassign = async (studentId: number) => {
+    setActionError("");
+    try {
+      await unassign(studentId);
     } catch (e) {
       setActionError((e as Error).message);
     }
@@ -266,6 +276,7 @@ export default function Rooms() {
                       room={room}
                       onAssign={(r, b) => setAssignment({ room: r, bed: b })}
                       onViewStudent={(sid) => navigate(`/manage/students/${sid}`)}
+                      onUnassign={handleUnassign}
                       onRoomImageUpdate={handleRoomImageUpdate}
                       onToggleMaintenance={handleToggleMaintenance}
                       onEdit={(r) => setRoomModal({ open: true, editing: r })}

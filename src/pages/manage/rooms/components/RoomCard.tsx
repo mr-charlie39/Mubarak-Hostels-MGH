@@ -8,10 +8,11 @@ type Props = {
   room: RoomView;
   onAssign: (room: RoomView, bed: Bed) => void;
   onViewStudent: (studentId: number) => void;
-  onRoomImageUpdate?: (room: RoomView, url: string) => void;
-  onToggleMaintenance?: (bedId: number, current: boolean) => void;
-  onEdit?: (room: RoomView) => void;
-  onDelete?: (room: RoomView) => void;
+  onUnassign?: (studentId: number) => void;
+  onRoomImageUpdate: (room: RoomView, url: string) => void;
+  onToggleMaintenance: (bedId: number, current: boolean) => void;
+  onEdit: (room: RoomView) => void;
+  onDelete: (room: RoomView) => void;
 };
 
 export default function RoomCard({

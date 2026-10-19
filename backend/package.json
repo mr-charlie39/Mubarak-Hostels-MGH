@@ -10,7 +10,8 @@
     "seed-admin": "node scripts/seedAdmin.js",
     "seed-wardens": "node scripts/seedHostelAdmins.js",
     "reset": "node scripts/reset.js",
-    "migrate": "node scripts/migrate.js"
+    "migrate": "node scripts/migrate.js",
+    "migrate-expenses": "node scripts/migrate-2026-expenses.mjs"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

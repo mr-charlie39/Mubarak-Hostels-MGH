@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { pool } from "../db.js";
-import { requireAuth } from "../middleware/auth.js";
+import { requireAuth, requireAdmin } from "../middleware/auth.js";
 
 // Audit log — REST mirror of the Supabase `audit_logs` table.
 //   GET  /api/audit-logs?limit=N  -> AuditLog[]
@@ -8,7 +8,7 @@ import { requireAuth } from "../middleware/auth.js";
 const router = Router();
 router.use(requireAuth);
 
-router.get("/", async (req, res) => {
+router.get("/", requireAdmin, async (req, res) => {
   try {
     const limit = Math.min(Number(req.query.limit) || 50, 500);
     const [rows] = await pool.query(

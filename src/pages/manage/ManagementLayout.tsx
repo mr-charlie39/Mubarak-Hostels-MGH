@@ -12,6 +12,7 @@ const titles: Record<string, string> = {
   "/manage/rooms": "Rooms & Beds",
   "/manage/bookings": "Bookings",
   "/manage/fees": "Fees",
+  "/manage/expenses": "Expenses",
   "/manage/attendance": "Attendance",
   "/manage/complaints": "Complaints",
   "/manage/improvements": "Improvements",

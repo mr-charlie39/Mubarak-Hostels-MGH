@@ -153,7 +153,7 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
       if (attempt === 2) {
         apiHealthy = false;
         apiMode = false;
-        throw new ApiError("The service is temporarily unavailable. Please try again.");
+        throw err instanceof ApiError ? err : new ApiError("The service is temporarily unavailable. Please try again.");
       }
       await sleep(300 * (attempt + 1));
     } finally {
